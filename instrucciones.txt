@@ -1,0 +1,14 @@
+Primero ocuparemos descargar el repositorio:
+git clone git@github.com:VillalobosLobos/Sistema-De-Control-De-Acceso.git
+
+Agregamos todos los archivo a nuestro control de versiones
+git add .
+
+Creando un commit con un mensaje
+git commit -m "mira mira"
+
+Subimos los cambios al repositorio:
+git push origin main
+
+
+
