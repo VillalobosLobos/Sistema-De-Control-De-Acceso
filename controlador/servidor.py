@@ -4,7 +4,7 @@ from flask import jsonify
 
 coneccion=mysql.connector.connect(
 	host="localhost",
-	user="root",
+	user="villalobos",
 	password="root",
 	database="cet1"
 )
@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "qué hubo padrino?"
+	return "Hola padrino"
 
 @app.route('/info/<int:boleta>',methods=['GET'])
 def info(boleta):
@@ -54,7 +54,7 @@ def alta():
 	coneccion.commit()
 	cursor.close()
 	
-	return f'Registro exitoso'
+	return "Registro exitoso"
 
 @app.route('/actualizar',methods=['POST'])
 def actualizar():
@@ -72,7 +72,7 @@ def actualizar():
 	coneccion.commit()
 	cursor.close()
 	
-	return f'Actualización exitosa'
+	return "Actualizacion exitosa"
 
 @app.route('/eliminar/<int:boleta>',methods=['DELETE'])
 def eliminar(boleta):
@@ -81,7 +81,7 @@ def eliminar(boleta):
 	coneccion.commit()
 	cursor.close()
 
-	return f'Se a eliminado correctamente'
+	return "Se a eliminado correctamente"
 
 @app.route('/registrar/<boleta>/<estado>',methods=['GET'])
 def registrar(boleta,estado):
@@ -90,7 +90,7 @@ def registrar(boleta,estado):
 	coneccion.commit()
 	cursor.close()
 
-	return f'Estado cambiado'
+	return "Estado cambiado"
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -104,11 +104,11 @@ def login():
 	cursor.close()
 
 	if resultado is None:
-		return f'Error al ingresar'
+		return "Error al ingresar"
 	elif resultado[0]==contraseña:
-		return f'Correcto'
+		return "Correcto"
 	else:
-		return f'Error al ingresar'
+		return "Error al ingresar"
 
 if __name__ == '__main__':
     app.run(port=8000,debug=True)
