@@ -16,10 +16,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return "Hola padrino"
+	return "Servidor vivo"
 
 @app.route('/info/<int:boleta>',methods=['GET'])
 def info(boleta):
+	'''
+	Función para obtener la información del alumno usando su boleta
+	Parametros:
+		int: boleta
+
+	Valor de regreso:
+		json: salida
+	'''
 	cursor=coneccion.cursor()
 	cursor.execute("SELECT * FROM alumnos where boleta=%s;",(boleta,))
 
@@ -38,8 +46,15 @@ def info(boleta):
 
 	return jsonify(salida)
 
-@app.route('/alta',methods=['POST'])
-def alta():
+@app.route('/altaAlumno',methods=['POST'])
+def altaAlumno():
+	'''
+	Función para agregar a un alumno a la BD
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string: "Regristro exitoso"
+	'''
 	info=request.json
 	boleta=info.get('boleta')
 	nombre=info.get('nombre')
@@ -56,8 +71,15 @@ def alta():
 	
 	return "Registro exitoso"
 
-@app.route('/actualizar',methods=['POST'])
-def actualizar():
+@app.route('/actualizarAlumno',methods=['POST'])
+def actualizarAlumno():
+	'''
+	Función para actualiar a los alumnos dentro de la BD
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string:"Actualización exitosa"
+	'''
 	info=request.json
 	boleta=info.get('boleta')
 	nombre=info.get('nombre')
@@ -74,8 +96,15 @@ def actualizar():
 	
 	return "Actualizacion exitosa"
 
-@app.route('/eliminar/<int:boleta>',methods=['DELETE'])
-def eliminar(boleta):
+@app.route('/eliminarAlumno/<int:boleta>',methods=['DELETE'])
+def eliminarAlumno(boleta):
+	'''
+	Función para eliminar de la BD a un alumno
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string: "Se a eliminado correctamente"
+	'''
 	cursor=coneccion.cursor()
 	cursor.execute("delete from  alumnos where boleta=%s;",(boleta,))
 	coneccion.commit()
@@ -83,8 +112,16 @@ def eliminar(boleta):
 
 	return "Se a eliminado correctamente"
 
-@app.route('/registrar/<boleta>/<estado>',methods=['GET'])
-def registrar(boleta,estado):
+@app.route('/registrarAlumno/<boleta>/<estado>',methods=['GET'])
+def registrarAlumno(boleta,estado):
+	'''
+	Función para registrar si el alumno está dentro o afuera del plantel
+	Parametros:
+		int:boleta
+		string:estado
+	Valor de retorno:
+		string: "Estado cambiado"
+	'''
 	cursor=coneccion.cursor()
 	cursor.execute("update alumnos set estado=%s where boleta=%s;",(estado,boleta))
 	coneccion.commit()
@@ -94,6 +131,13 @@ def registrar(boleta,estado):
 
 @app.route('/login', methods=['POST'])
 def login():
+	'''
+	Función para el login del sistema
+	Parametros:
+		Ninguno
+	Valor de regreso:
+		string
+	'''
 	info=request.json
 	usuario=info.get('usuario')
 	contraseña=info.get('contraseña')
