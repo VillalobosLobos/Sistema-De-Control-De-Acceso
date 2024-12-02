@@ -71,6 +71,27 @@ def altaAlumno():
 	
 	return "Registro exitoso"
 
+@app.route('/altaUsuario',methods=['POST'])
+def altaUsuario():
+	'''
+	Función para agregar a un usuario a la BD
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string: "Regristro exitoso"
+	'''
+	info=request.json
+	usuario=info.get('usuario')
+	contraseña=info.get('contraseña')
+	turno=info.get('turno')
+
+	cursor=coneccion.cursor()
+	cursor.execute("insert into usuarios (usuario, contraseña, turno) values (%s, %s, %s);",(usuario,contraseña,turno))
+	coneccion.commit()
+	cursor.close()
+	
+	return "Registro exitoso"
+
 @app.route('/actualizarAlumno',methods=['POST'])
 def actualizarAlumno():
 	'''
@@ -96,6 +117,27 @@ def actualizarAlumno():
 	
 	return "Actualizacion exitosa"
 
+@app.route('/actualizarUsuario',methods=['POST'])
+def actualizarUsuario():
+	'''
+	Función para actualiar a los usuarios dentro de la BD
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string:"Actualización exitosa"
+	'''
+	info=request.json
+	usuario=info.get('usuario')
+	contraseña=info.get('contraseña')
+	turno=info.get('turno')
+	
+	cursor=coneccion.cursor()
+	cursor.execute("update usuarios set usuario=%s, contraseña=%s, turno=%s where usuario=%s",(usuario,contraseña,turno,usuario))
+	coneccion.commit()
+	cursor.close()
+	
+	return "Actualizacion exitosa"
+
 @app.route('/eliminarAlumno/<int:boleta>',methods=['DELETE'])
 def eliminarAlumno(boleta):
 	'''
@@ -107,6 +149,22 @@ def eliminarAlumno(boleta):
 	'''
 	cursor=coneccion.cursor()
 	cursor.execute("delete from  alumnos where boleta=%s;",(boleta,))
+	coneccion.commit()
+	cursor.close()
+
+	return "Se a eliminado correctamente"
+
+@app.route('/eliminarUsuario/<int:usuario>',methods=['DELETE'])
+def eliminarUsuario(usuario):
+	'''
+	Función para eliminar de la BD a un usuario
+	Parametros:
+		Ninguno
+	Valor de retorno:
+		string: "Se a eliminado correctamente"
+	'''
+	cursor=coneccion.cursor()
+	cursor.execute("delete from  usuarios where usuario=%s;",(usuario,))
 	coneccion.commit()
 	cursor.close()
 
