@@ -10,5 +10,10 @@ git commit -m "mira mira"
 Subimos los cambios al repositorio:
 git push origin main
 
+Para descargar los cambios más recientes usamos este comando:
+git pull origin main
+
+Para ver si nuestra rama o árbol está al tiro se usa:
+git status
 
 
