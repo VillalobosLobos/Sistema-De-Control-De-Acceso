@@ -9,6 +9,7 @@ class MiFrame(ctk.CTkFrame):
 		self.titulo = ctk.CTkLabel(
 			self,
 			text="Inicio de sesión",
+			text_color="white",
 			font=("Impact",80))
 		self.titulo.grid(row=0,column=2,padx=20,pady=20,sticky="ew")
 
@@ -28,7 +29,7 @@ class Inicio(ctk.CTk):
 
 inicio=Inicio()
 inicio.configure(fg_color="white")
-inicio.resizable(False,False)
+#inicio.resizable(False,False)
 inicio.mainloop()
 
 
