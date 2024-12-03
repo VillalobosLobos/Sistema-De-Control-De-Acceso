@@ -1,5 +1,5 @@
 import customtkinter as ctk
-import utilidades as u
+from utilidades import utilidades as u
 import requests
 
 class MiFrame(ctk.CTkFrame):
