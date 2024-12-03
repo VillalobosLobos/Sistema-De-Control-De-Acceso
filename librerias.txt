@@ -1,3 +1,10 @@
 pip install Flask
 pip install mysql-connector
+pip install customtkinter==0.3
+pip install Pillow
+
+
+
+
+
 
