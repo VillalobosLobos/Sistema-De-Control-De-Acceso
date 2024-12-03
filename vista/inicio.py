@@ -17,6 +17,10 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarCampo(self,"Ingrese su usuario",50,320,30,2,1,20,20,"e")
 		u.agregarCampoContraseña(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
 
+		#Para agregar botones
+		#def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,fila,columna,x,y)
+		u.agregarBoton(self,"Ingresar",40,"#044b29","#03b25f",300,9,4,1,20,20)
+
 class Inicio(ctk.CTk):
 	def __init__(self):
 		super().__init__()

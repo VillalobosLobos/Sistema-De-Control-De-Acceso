@@ -27,7 +27,16 @@ def agregarCampoContraseña(root,txt,altura,ancho,tam,fila,columna,x,y,s):
 		show="*")
 	campo.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
 
-
+def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,fila,columna,x,y):
+	boton=ctk.CTkButton(
+		root,
+		text=txt,
+		font=("Impact",int(tam)),
+		fg_color=colorFondo,
+		hover_color=colorHover,
+		width=ancho,
+		corner_radius=radio)
+	boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y))
 
 
 
