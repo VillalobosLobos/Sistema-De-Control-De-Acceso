@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import utilidades as u
 import requests
 
 class MiFrame(ctk.CTkFrame):
@@ -6,12 +7,7 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Para las etiquetas de texto
-		self.titulo = ctk.CTkLabel(
-			self,
-			text="Inicio de sesión",
-			text_color="white",
-			font=("Impact",80))
-		self.titulo.grid(row=0,column=2,padx=20,pady=20,sticky="ew")
+		u.agregarEtiqueta(self,"Inicio de sesión","white",80,0,2,20,20,"ew")
 
 class Inicio(ctk.CTk):
 	def __init__(self):
