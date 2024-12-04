@@ -7,7 +7,10 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Para las etiquetas de texto
-		u.agregarEtiqueta(self,"Inicio de sesión","white",80,0,1,20,20,"ew")
+		u.agregarEtiqueta(self,"Registro de entrada y salida","white",50,0,1,20,20,"w")
+		
+		#Campos donde mostraremos la información del alumno
+		u.frameInfoAlumno(self)
 
 class Inicio(ctk.CTk):
 	def __init__(self):

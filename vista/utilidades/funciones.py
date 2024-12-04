@@ -1,14 +1,14 @@
 from utilidades import vigilante as v
 import requests
 
-url="http://127.0.0.1:8000/login"
+URL="http://127.0.0.1:8000/"
 
 def ingresar(usuario,contraseña,raiz):
 	datos={
 		"usuario":usuario,
 		"contraseña":contraseña
 	}
-	response=requests.post(url,json=datos)
+	response=requests.post(URL+"login",json=datos)
 	
 	if response.text=="Correcto":
 		if usuario[0]=='V':
