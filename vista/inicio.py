@@ -1,7 +1,6 @@
 import customtkinter as ctk
 from utilidades import utilidades as u
 from utilidades import funciones as f
-import requests
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -22,7 +21,7 @@ class MiFrame(ctk.CTkFrame):
 	def ingresar(self):
 		usuario=self.usuarioCampo.get()
 		contraseña=self.contraseñaCampo.get()
-		f.ingresar(usuario,contraseña)
+		f.ingresar(usuario,contraseña,self.master)
 
 class Inicio(ctk.CTk):
 	def __init__(self):
