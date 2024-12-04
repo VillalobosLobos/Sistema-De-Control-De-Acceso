@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from utilidades import utilidades as u
+from utilidades import funciones as f
 import requests
 
 class MiFrame(ctk.CTkFrame):
@@ -7,19 +8,21 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Para las etiquetas de texto
-		#agregarEtiqueta()root,texto,colorLetra,tamaño,fila,columna,x,y,s)
 		u.agregarEtiqueta(self,"Inicio de sesión","white",80,0,1,20,20,"ew")
 		u.agregarEtiqueta(self,"Usuario","white",40,2,1,20,20,"w")
 		u.agregarEtiqueta(self,"Contraseña","white",40,3,1,20,20,"w")
 
 		#Para agregar un campo de texto
-		#agregarCampo(root,txt,altura,ancho,tam,fila,columna,x,y,s)
-		u.agregarCampo(self,"Ingrese su usuario",50,320,30,2,1,20,20,"e")
-		u.agregarCampoContraseña(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
+		self.usuarioCampo=u.agregarCampo(self,"Ingrese su usuario",50,320,30,2,1,20,20,"e")
+		self.contraseñaCampo=u.agregarCampoContraseña(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
 
 		#Para agregar botones
-		#def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,fila,columna,x,y)
-		u.agregarBoton(self,"Ingresar",40,"#044b29","#03b25f",300,9,4,1,20,20)
+		u.agregarBoton(self,"Ingresar",40,"#044b29","#03b25f",300,9,self.ingresar,4,1,20,20)
+
+	def ingresar(self):
+		usuario=self.usuarioCampo.get()
+		contraseña=self.contraseñaCampo.get()
+		f.ingresar(usuario,contraseña)
 
 class Inicio(ctk.CTk):
 	def __init__(self):
