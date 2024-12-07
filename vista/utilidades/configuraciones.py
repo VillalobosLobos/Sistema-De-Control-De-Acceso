@@ -1,5 +1,5 @@
 #Configuraciones para la pantalla
-dimensiones="890x450" #Para la entrega final usar 1090x650
+dimensiones="990x550" #Para la entrega final usar 1090x650
 
 #Colores a usar
 verde="#058749"
