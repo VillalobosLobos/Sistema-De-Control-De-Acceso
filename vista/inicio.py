@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from utilidades import utilidades as u
 from utilidades import funciones as f
+from utilidades import configuraciones as c
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -16,7 +17,7 @@ class MiFrame(ctk.CTkFrame):
 		self.contraseñaCampo=u.agregarCampoContraseña(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
 
 		#Para agregar botones
-		u.agregarBoton(self,"Ingresar",40,"#044b29","#03b25f",300,9,self.ingresar,4,1,20,20,-1)
+		u.agregarBoton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,4,1,20,20,-1)
 
 	def ingresar(self):
 		usuario=self.usuarioCampo.get()
@@ -26,12 +27,12 @@ class MiFrame(ctk.CTkFrame):
 class Inicio(ctk.CTk):
 	def __init__(self):
 		super().__init__()
-		self.geometry("1090x650")
+		self.geometry(c.dimensiones)
 		self.title("CET1 Walter Cross Buchanan")
 
 		#Agregando nuestro frame
 		self.mi_frame=MiFrame(master=self)
-		self.mi_frame.configure(fg_color="#058749")
+		self.mi_frame.configure(fg_color=c.verde)
 		self.mi_frame.grid(row=0,column=0,padx=20,pady=20,sticky="nsew")
 
 		self.grid_rowconfigure(0,weight=1) #Fila 0 ocupara más espacio
