@@ -1,5 +1,6 @@
 from utilidades import utilidades as u
 from utilidades import funciones as f
+from utilidades import configuraciones as c
 import customtkinter as ctk
 
 class MiFrame(ctk.CTkFrame):
@@ -15,12 +16,12 @@ class MiFrame(ctk.CTkFrame):
 class Inicio(ctk.CTk):
 	def __init__(self):
 		super().__init__()
-		self.geometry("1090x650")
+		self.geometry(c.dimensiones)
 		self.title("Vigilante")
 
 		#Agregando nuestro frame
 		self.mi_frame=MiFrame(master=self)
-		self.mi_frame.configure(fg_color="#058749")
+		self.mi_frame.configure(fg_color=c.verde)
 		self.mi_frame.grid(row=0,column=0,padx=20,pady=20,sticky="nsew")
 
 		self.grid_rowconfigure(0,weight=1) #Fila 0 ocupara más espacio
