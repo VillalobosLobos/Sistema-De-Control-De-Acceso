@@ -7,7 +7,8 @@ def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 		root,
 		text=txt,
 		text_color=color,
-		font=(c.fuente,int(tam)))
+		font=(c.fuente,int(tam)),
+		bg_color=c.verde)
 	if fila==-1 or fila==-1:
 		etiqueta.pack(pady=y,padx=x,side=s)
 	else:
@@ -19,7 +20,8 @@ def agregarCampo(root,txt,altura,ancho,tam,fila,columna,x,y,s):
 		placeholder_text=txt,
 		height=int(altura),
 		width=int(ancho),
-		font=(c.fuente,int(tam)))
+		font=(c.fuente,int(tam)),
+		bg_color=c.verde)
 	if fila==-1 or columna==-1:
 		campo.pack(pady=y,padx=x,side=s)
 	else:
