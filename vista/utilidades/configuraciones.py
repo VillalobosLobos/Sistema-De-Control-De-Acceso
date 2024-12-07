@@ -1,11 +1,16 @@
 #Configuraciones para la pantalla
 dimensiones="990x550" #Para la entrega final usar 1090x650
+dimencionesAlerta="300x200"
 
 #Colores y fuente a usar
 verde="#058749"
 verdeFuerte="#044b29"
 verdeClaro="#03b25f"
 fuente="Impact"
+
+#Tamaño de letra para la alerta
+tituloAlerta="Mensaje de error"
+tamAlerta=30
 
 #Para los campos del archivo utilidades
 tamLetra=20 #40

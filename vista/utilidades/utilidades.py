@@ -54,10 +54,23 @@ def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,comando,fila,col
 	else:
 		boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
 
+def alerta(txt):
+	root=ctk.CTkToplevel()
+	root.title(c.tituloAlerta)
+	root.geometry(c.dimencionesAlerta)
+	root.configure(fg_color=c.verdeFuerte)
+
+	msj=ctk.CTkLabel(root,text=txt,font=(c.fuente,c.tamAlerta))
+	msj.pack(pady=20)
+
+	cerrar=ctk.CTkButton(root,text="Aceptar",font=(c.fuente,c.tamAlerta),fg_color=c.verde,hover_color=c.verdeClaro,command=root.destroy)
+	cerrar.pack()
+
 def agregarCampoInfo(root,txtE,txtC,color,tamE,tamC,altura,ancho,fila,columna,x,y,s):
 	root.frameCampo=ctk.CTkFrame(root.frame)
+	root.frameCampo.configure(fg_color=c.verde)
 	root.frameCampo.pack(pady=5,padx=10,anchor="w")
-	root.frame.configure(fg_color=c.verdeFuerte)
+	root.frame.configure(fg_color=c.verde)
 
 	agregarEtiqueta(root.frameCampo,txtE,color,tamE,fila,columna,x,y,s)
 	campo=agregarCampo(root.frameCampo,txtC,altura,ancho,tamC,fila,columna,x,y,s)
