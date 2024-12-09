@@ -60,7 +60,7 @@ def alerta(txt):
 	root.geometry(c.dimencionesAlerta)
 	root.configure(fg_color=c.verdeFuerte)
 
-	msj=ctk.CTkLabel(root,text=txt,font=(c.fuente,c.tamAlerta))
+	msj=ctk.CTkLabel(root,text=txt,text_color="white",font=(c.fuente,c.tamAlerta))
 	msj.pack(pady=20)
 
 	cerrar=ctk.CTkButton(root,text="Aceptar",font=(c.fuente,c.tamAlerta),fg_color=c.verde,hover_color=c.verdeClaro,command=root.destroy)
@@ -97,16 +97,18 @@ def frameInfoAlumno(root):
 def buscarAlumno(root):
 	boleta=root.boleta.get()
 	informacion=f.buscar(boleta)
+	
+	root.nombre.delete(0,"end")
+	root.nombre.insert(0,informacion["nombre"])
+	root.grupos.delete(0,"end")
+	root.grupos.insert(0,informacion["grupos"])
+	root.turno.delete(0,"end")
+	root.turno.insert(0,informacion["turno"])
+	root.especialidad.delete(0,"end")
+	root.especialidad.insert(0,informacion["especialidad"])
 
 def registrarEntrada(root):
 	boleta=root.boleta.get()
 	f.registrar(boleta)
-
-
-
-
-
-
-
 
 

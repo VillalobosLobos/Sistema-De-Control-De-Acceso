@@ -20,6 +20,8 @@ def ingresar(usuario,contraseña,raiz):
 				ventana=v.Inicio()
 				ventana.configure(fg_color="white")
 				ventana.mainloop()
+			else:
+				u.alerta("Error en el usuario \no contraseña")
 		else:
 			u.alerta("Error en el usuario \no contraseña")
 
@@ -27,16 +29,16 @@ def buscar(boleta):
 	try:
 		return json.loads(requests.get(URL+"info/"+boleta).text)
 	except json.decoder.JSONDecodeError as e:
-		u.alerta("No sé encontro el usuario")
+		u.alerta("No sé encontro \nel usuario")
 
 def registrar(boleta):
 	try:
-		datos=json.loads(requests.get(URL+"info/"+boleta).text)
+		datos=buscar(boleta)
 	except json.decoder.JSONDecodeError as e:
 		u.alerta("No sé pudo registrar \nla entrada o salida")
 	else:
-		if datos.get('estado')=="true":
-			response=requests.get(URL+"registrar/"+boleta+"/false")
+		if datos["estado"]=="true":
+			response=requests.get(URL+"registrarAlumno/"+boleta+"/false")
 		else:
-			response=requests.get(URL+"registrar/"+boleta+"/true")
+			response=requests.get(URL+"registrarAlumno/"+boleta+"/true")
 
