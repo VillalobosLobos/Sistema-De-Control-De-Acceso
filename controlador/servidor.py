@@ -107,11 +107,11 @@ def actualizarAlumno():
 	grupos=info.get('grupos')
 	turno=info.get('turno')
 	especialidad=info.get('especialidad')
-	estado=info.get('estado')
+	#estado=info.get('estado')
 	foto=info.get('foto')
 
 	cursor=coneccion.cursor()
-	cursor.execute("update alumnos set boleta=%s, nombre=%s, grupos=%s, turno=%s, especialidad=%s, estado=%s,foto=%s where boleta=%s",(boleta,nombre,grupos,turno,especialidad,estado,foto,boleta))
+	cursor.execute("update alumnos set boleta=%s, nombre=%s, grupos=%s, turno=%s, especialidad=%s,foto=%s where boleta=%s",(boleta,nombre,grupos,turno,especialidad,foto,boleta))
 	coneccion.commit()
 	cursor.close()
 	

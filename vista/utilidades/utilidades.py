@@ -131,7 +131,7 @@ def actualizarAlumno(root):
 	especialidad=root.especialidad.get()
 	foto=""
 
-	f.actualizarAlumno(nombre,grupos,turno,especialidad,foto)
+	f.actualizarAlumno(boleta,nombre,grupos,turno,especialidad,foto)
 
 def registrarEntrada(root):
 	boleta=root.boleta.get()

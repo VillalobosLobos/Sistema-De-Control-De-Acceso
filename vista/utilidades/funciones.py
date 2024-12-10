@@ -50,8 +50,9 @@ def registrar(boleta):
 		else:
 			response=requests.get(URL+"registrarAlumno/"+boleta+"/true")
 
-def actualizarAlumno(nombre,grupos,turno,especialidad,foto):
+def actualizarAlumno(boleta,nombre,grupos,turno,especialidad,foto):
 	datos={
+		"boleta":boleta,
 		"nombre":nombre,
 		"grupos":grupos,
 		"turno":turno,
@@ -63,6 +64,6 @@ def actualizarAlumno(nombre,grupos,turno,especialidad,foto):
 	except requests.exceptions.ConnectionError as e:
 		u.alerta("No hay conexión\ndel servidor")
 	else:
-		pass
+		print(response.text)
 
 
