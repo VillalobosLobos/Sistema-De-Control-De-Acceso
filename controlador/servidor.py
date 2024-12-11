@@ -115,7 +115,7 @@ def actualizarAlumno():
 	coneccion.commit()
 	cursor.close()
 	
-	return "Actualizacion exitosa"
+	return "Actualización exitosa"
 
 @app.route('/actualizarUsuario',methods=['POST'])
 def actualizarUsuario():
@@ -136,7 +136,7 @@ def actualizarUsuario():
 	coneccion.commit()
 	cursor.close()
 	
-	return "Actualizacion exitosa"
+	return "Actualización exitosa"
 
 @app.route('/eliminarAlumno/<int:boleta>',methods=['DELETE'])
 def eliminarAlumno(boleta):
@@ -168,7 +168,7 @@ def eliminarUsuario(usuario):
 	coneccion.commit()
 	cursor.close()
 
-	return "Se a eliminado correctamente"
+	return "Se a eliminado\ncorrectamente"
 
 @app.route('/registrarAlumno/<boleta>/<estado>',methods=['GET'])
 def registrarAlumno(boleta,estado):

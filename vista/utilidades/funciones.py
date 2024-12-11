@@ -3,6 +3,7 @@ from utilidades import administrador as a
 from utilidades import utilidades as u
 from utilidades import actualizarAlumnos as aa
 from utilidades import eliminarAlumnos as ea
+from utilidades import agregarAlumno as ia
 import requests
 import json
 
@@ -51,6 +52,13 @@ def ventanaEliminarAlumno(root):
 	ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
 	ventana.mainloop()
 
+def ventanaAgregarAlumno(root):
+	root.withdraw()
+	ventana=ia.Inicio()
+	ventana.configure(fg_color="white")
+	ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
+	ventana.mainloop()
+
 def aparecer(root,v):
 	v.destroy()
 	root.deiconify()
@@ -93,7 +101,6 @@ def actualizarAlumno(boleta,nombre,grupos,turno,especialidad,foto):
 		u.alerta(response.text)
 
 def eliminarAlumno(boleta):
-	print(boleta)
 	try:
 		response=requests.delete(URL+"eliminarAlumno/"+boleta)
 	except requests.exceptions.ConnectionError as e:
@@ -101,8 +108,20 @@ def eliminarAlumno(boleta):
 	else:
 		u.alerta(response.text)
 
-
-
-	
+def agregarAlumno(boleta,nombre,grupos,turno,especialidad,foto):
+	datos={
+		"boleta":boleta,
+		"nombre":nombre,
+		"grupos":grupos,
+		"turno":turno,
+		"especialidad":especialidad,
+		"foto":foto
+	}
+	try:
+		response=requests.post(URL+"altaAlumno",json=datos)
+	except requests.exceptions.ConnectionError as e:
+		u.alerta("No hay conexión\ndel servidor")
+	else:
+		u.alerta(response.text)
 
 

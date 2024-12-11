@@ -11,7 +11,7 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarEtiqueta(self,"Agregar alumno","white",50,0,1,20,20,"w")
 		
 		#Campos donde mostraremos la información del alumno
-		u.frameActualizarAlumno(self)
+		u.frameAgregarAlumno(self)
 
 class Inicio(ctk.CTk):
 	def __init__(self):

@@ -141,7 +141,17 @@ def frameAgregarAlumno(root):
 	root.turno=agregarCampoInfo(root,"Turno","Turno del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoTurno,-1,-1,5,10,"left")
 	root.especialidad=agregarCampoInfo(root,"Especialidad","Carrera del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoEspecialidad,-1,-1,5,10,"left")
 
-	agregarBoton(root,"Agregar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:eliminarAlumno(root),2,1,20,20,"w")
+	agregarBoton(root,"Agregar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:agregarAlumno(root),2,1,20,20,"w")
+
+def agregarAlumno(root):
+	boleta=root.boleta.get()
+	nombre=root.nombre.get()
+	grupos=root.grupos.get()
+	turno=root.turno.get()
+	especialidad=root.especialidad.get()
+	foto=""
+	f.agregarAlumno(boleta,nombre,grupos,turno,especialidad,foto)
+
 
 def buscarAlumno(root):
 	boleta=root.boleta.get()
