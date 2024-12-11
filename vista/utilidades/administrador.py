@@ -11,7 +11,7 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarEtiqueta(self,"Gestión de usuarios","white",50,0,1,20,20,"w")
 		#Botones para la gestión de alumnos
 		u.agregarBoton(self,"Actualizar alumno",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.actualizarAlumno,1,0,20,20,"w")
-		u.agregarBoton(self,"Eliminar alumno",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,2,0,20,20,"w")
+		u.agregarBoton(self,"Eliminar alumno",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.eliminarAlumno,2,0,20,20,"w")
 		u.agregarBoton(self,"Agregar alumno",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,3,0,20,20,"w")
 
 		#Botones para la gestión de administradores
@@ -20,9 +20,10 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarBoton(self,"Agregar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,3,1,20,20,"w")
 
 	def actualizarAlumno(self):
-		ventana=aa.Inicio()
-		ventana.configure(fg_color="white")
-		ventana.mainloop()
+		f.ventanaActualizarAlumno(self.master)
+
+	def eliminarAlumno(self):
+		f.ventanaEliminarAlumno(self.master)
 
 class Inicio(ctk.CTk):
 	def __init__(self):

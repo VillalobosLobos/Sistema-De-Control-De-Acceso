@@ -152,7 +152,7 @@ def eliminarAlumno(boleta):
 	coneccion.commit()
 	cursor.close()
 
-	return "Se a eliminado correctamente"
+	return "Se a eliminado \ncorrectamente"
 
 @app.route('/eliminarUsuario/<int:usuario>',methods=['DELETE'])
 def eliminarUsuario(usuario):

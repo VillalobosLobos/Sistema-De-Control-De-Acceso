@@ -110,6 +110,39 @@ def frameActualizarAlumno(root):
 	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarAlumno(root),2,1,350,20,"e")
 	agregarBoton(root,"Actualizar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:actualizarAlumno(root),2,1,20,20,"w")
 
+def frameEliminarAlumno(root):
+	root.frame = ctk.CTkFrame(root)
+	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
+	root.frame.configure(fg_color=c.verde)
+
+	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
+	root.frame.grid_columnconfigure(0, weight=1)
+
+	root.boleta=agregarCampoInfo(root,"Boleta","Ingrese su boleta","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
+	root.nombre=agregarCampoInfo(root,"Nombre","Nombre del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
+	root.grupos=agregarCampoInfo(root,"Grupos","Grupos del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoGrupos,-1,-1,5,10,"left")
+	root.turno=agregarCampoInfo(root,"Turno","Turno del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoTurno,-1,-1,5,10,"left")
+	root.especialidad=agregarCampoInfo(root,"Especialidad","Carrera del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoEspecialidad,-1,-1,5,10,"left")
+
+	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarAlumno(root),2,1,350,20,"e")
+	agregarBoton(root,"Eliminar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:eliminarAlumno(root),2,1,20,20,"w")
+
+def frameAgregarAlumno(root):
+	root.frame = ctk.CTkFrame(root)
+	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
+	root.frame.configure(fg_color=c.verde)
+
+	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
+	root.frame.grid_columnconfigure(0, weight=1)
+
+	root.boleta=agregarCampoInfo(root,"Boleta","Ingrese su boleta","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
+	root.nombre=agregarCampoInfo(root,"Nombre","Nombre del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
+	root.grupos=agregarCampoInfo(root,"Grupos","Grupos del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoGrupos,-1,-1,5,10,"left")
+	root.turno=agregarCampoInfo(root,"Turno","Turno del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoTurno,-1,-1,5,10,"left")
+	root.especialidad=agregarCampoInfo(root,"Especialidad","Carrera del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoEspecialidad,-1,-1,5,10,"left")
+
+	agregarBoton(root,"Agregar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:eliminarAlumno(root),2,1,20,20,"w")
+
 def buscarAlumno(root):
 	boleta=root.boleta.get()
 	informacion=f.buscar(boleta)
@@ -122,6 +155,10 @@ def buscarAlumno(root):
 	root.turno.insert(0,informacion["turno"])
 	root.especialidad.delete(0,"end")
 	root.especialidad.insert(0,informacion["especialidad"])
+
+def eliminarAlumno(root):
+	boleta=root.boleta.get()
+	f.eliminarAlumno(boleta)
 
 def actualizarAlumno(root):
 	boleta=root.boleta.get()
