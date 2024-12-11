@@ -46,6 +46,30 @@ def info(boleta):
 
 	return jsonify(salida)
 
+@app.route('/infoUsuario/<string:usuario>',methods=['GET'])
+def infoUsuario(usuario):
+	'''
+	Función para obtener la información del usuario usando su usuario
+	Parametros:
+		String : usuario
+
+	Valor de regreso:
+		json: salida
+	'''
+	cursor=coneccion.cursor()
+	cursor.execute("SELECT * FROM usuarios where usuario=%s;",(usuario,))
+
+	resultados = cursor.fetchall()
+	cursor.close()
+
+	salida={
+		"usuario":resultados[0][0],
+		"turno":resultados[0][2],
+	}
+
+	return jsonify(salida)
+
+
 @app.route('/altaAlumno',methods=['POST'])
 def altaAlumno():
 	'''
@@ -128,11 +152,10 @@ def actualizarUsuario():
 	'''
 	info=request.json
 	usuario=info.get('usuario')
-	contraseña=info.get('contraseña')
 	turno=info.get('turno')
 	
 	cursor=coneccion.cursor()
-	cursor.execute("update usuarios set usuario=%s, contraseña=%s, turno=%s where usuario=%s",(usuario,contraseña,turno,usuario))
+	cursor.execute("update usuarios set usuario=%s, turno=%s where usuario=%s",(usuario,turno,usuario))
 	coneccion.commit()
 	cursor.close()
 	
@@ -154,7 +177,7 @@ def eliminarAlumno(boleta):
 
 	return "Se a eliminado \ncorrectamente"
 
-@app.route('/eliminarUsuario/<int:usuario>',methods=['DELETE'])
+@app.route('/eliminarUsuario/<string:usuario>',methods=['DELETE'])
 def eliminarUsuario(usuario):
 	'''
 	Función para eliminar de la BD a un usuario

@@ -8,16 +8,16 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Para las etiquetas de texto
-		u.agregarEtiqueta(self,"Actualización de usuario","white",50,0,1,20,20,"w")
+		u.agregarEtiqueta(self,"Agregar usuario","white",50,0,1,20,20,"w")
 		
 		#Campos donde mostraremos la información del alumno
-		u.frameActualizarUsuario(self)
+		u.frameAgregarUsuario(self)
 
 class Inicio(ctk.CTk):
 	def __init__(self):
 		super().__init__()
 		self.geometry(c.dimensiones)
-		self.title("Actualizar usuarios")
+		self.title("Agregar usuarios")
 
 		#Agregando nuestro frame
 		self.mi_frame=MiFrame(master=self)

@@ -15,9 +15,9 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarBoton(self,"Agregar alumno",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.agregarAlumno,3,0,20,20,"w")
 
 		#Botones para la gestión de administradores
-		u.agregarBoton(self,"Actualizar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,1,1,20,20,"w")
-		u.agregarBoton(self,"Eliminar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,2,1,20,20,"w")
-		u.agregarBoton(self,"Agregar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,f.aux,3,1,20,20,"w")
+		u.agregarBoton(self,"Actualizar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.actualizarUsuario,1,1,20,20,"w")
+		u.agregarBoton(self,"Eliminar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.eliminarUsuario,2,1,20,20,"w")
+		u.agregarBoton(self,"Agregar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.agregarUsuario,3,1,20,20,"w")
 
 	def actualizarAlumno(self):
 		f.ventanaActualizarAlumno(self.master)
@@ -27,6 +27,15 @@ class MiFrame(ctk.CTkFrame):
 
 	def agregarAlumno(self):
 		f.ventanaAgregarAlumno(self.master)
+
+	def actualizarUsuario(self):
+		f.ventanaActualizarUsuario(self.master)
+
+	def eliminarUsuario(self):
+		f.ventanaEliminarUsuario(self.master)
+
+	def agregarUsuario(self):
+		f.ventanaAgregarUsuario(self.master)
 
 class Inicio(ctk.CTk):
 	def __init__(self):

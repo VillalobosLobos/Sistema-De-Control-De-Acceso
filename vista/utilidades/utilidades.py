@@ -154,8 +154,57 @@ def frameActualizarUsuario(root):
 	root.usuario=agregarCampoInfo(root,"Usuario","Ingrese su usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
 	root.turno=agregarCampoInfo(root,"Turno","Turno del usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
 	
-	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarAlumno(root),2,1,350,20,"e")
-	agregarBoton(root,"Actualizar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:actualizarAlumno(root),2,1,20,20,"w")
+	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarUsuario(root),2,1,350,20,"e")
+	agregarBoton(root,"Actualizar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:actualizarUsuario(root),2,1,20,20,"w")
+
+def frameAgregarUsuario(root):
+	root.frame = ctk.CTkFrame(root)
+	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
+	root.frame.configure(fg_color=c.verde)
+
+	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
+	root.frame.grid_columnconfigure(0, weight=1)
+
+	root.usuario=agregarCampoInfo(root,"Usuario","Ingrese su usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
+	root.turno=agregarCampoInfo(root,"Turno","Turno del usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
+	root.contraseña=agregarCampoInfo(root,"Contraseña","Contraseña del usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
+	
+	agregarBoton(root,"Agregar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:agregarUsuario(root),2,1,20,20,"w")
+
+def frameEliminarUsuario(root):
+	root.frame = ctk.CTkFrame(root)
+	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
+	root.frame.configure(fg_color=c.verde)
+
+	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
+	root.frame.grid_columnconfigure(0, weight=1)
+
+	root.usuario=agregarCampoInfo(root,"Usuario","Ingrese su usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
+	root.turno=agregarCampoInfo(root,"Turno","Turno del usuario","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
+	
+	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarUsuario(root),2,1,350,20,"e")
+	agregarBoton(root,"Eliminar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:eliminarUsuario(root),2,1,20,20,"w")
+
+def eliminarUsuario(root):
+	usuario=root.usuario.get()
+	f.eliminarUsuario(usuario)
+
+def agregarUsuario(root):
+	usuario=root.usuario.get()
+	turno=root.turno.get()
+	contraseña=root.contraseña.get()
+	f.agregarUsuario(usuario,turno,contraseña)
+
+def buscarUsuario(root):
+	usuario=root.usuario.get()
+	informacion=f.buscarUsuario(usuario)
+	root.turno.delete(0,"end")
+	root.turno.insert(0,informacion["turno"])
+
+def actualizarUsuario(root):
+	usuario=root.usuario.get()
+	turno=root.turno.get()
+	f.actualizarUsuario(usuario,turno)
 
 def agregarAlumno(root):
 	boleta=root.boleta.get()
