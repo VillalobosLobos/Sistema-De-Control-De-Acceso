@@ -2,8 +2,11 @@ from utilidades import vigilante as v
 from utilidades import administrador as a
 from utilidades import utilidades as u
 from utilidades import actualizarAlumnos as aa
+from utilidades import actualizarUsuarios as au
 from utilidades import eliminarAlumnos as ea
+from utilidades import eliminarUsuarios as eu
 from utilidades import agregarAlumno as ia
+from utilidades import agregarUsuarios as iu
 import requests
 import json
 
@@ -38,6 +41,27 @@ def ingresar(usuario,contraseña,root):
 		else:
 			u.alerta("Error en el usuario \no contraseña")
 
+def ventanaEliminarUsuario(root):
+	root.withdraw()
+	ventana=eu.Inicio()
+	ventana.configure(fg_color="white")
+	ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
+	ventana.mainloop()
+
+def ventanaAgregarUsuario(root):
+	root.withdraw()
+	ventana=iu.Inicio()
+	ventana.configure(fg_color="white")
+	ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
+	ventana.mainloop()
+
+def ventanaActualizarUsuario(root):
+	root.withdraw()
+	ventana=au.Inicio()
+	ventana.configure(fg_color="white")
+	ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
+	ventana.mainloop()
+
 def ventanaActualizarAlumno(root):
 	root.withdraw()
 	ventana=aa.Inicio()
@@ -63,6 +87,12 @@ def aparecer(root,v):
 	v.destroy()
 	root.deiconify()
 
+def buscarUsuario(usuario):
+	try:
+		return json.loads(requests.get(URL+"infoUsuario/"+usuario).text)
+	except json.decoder.JSONDecodeError as e:
+		u.alerta("No sé encontro \nel usuario")
+
 def buscar(boleta):
 	try:
 		return json.loads(requests.get(URL+"info/"+boleta).text)
@@ -83,6 +113,18 @@ def registrar(boleta):
 		else:
 			response=requests.get(URL+"registrarAlumno/"+boleta+"/true")
 			u.alerta("Registro de entrada\ny salida éxitoso")
+
+def actualizarUsuario(usuario,turno):
+	datos={
+		"usuario":usuario,
+		"turno":turno
+	}
+	try:
+		response=requests.post(URL+"actualizarUsuario",json=datos)
+	except requests.exceptions.ConnectionError as e:
+		u.alerta("No hay conexión\ndel servidor")
+	else:
+		u.alerta(response.text)
 
 def actualizarAlumno(boleta,nombre,grupos,turno,especialidad,foto):
 	datos={
@@ -123,5 +165,27 @@ def agregarAlumno(boleta,nombre,grupos,turno,especialidad,foto):
 		u.alerta("No hay conexión\ndel servidor")
 	else:
 		u.alerta(response.text)
+
+def agregarUsuario(usuario,turno,contraseña):
+	datos={
+		"usuario":usuario,
+		"turno":turno,
+		"contraseña":contraseña
+	}
+	try:
+		response=requests.post(URL+"altaUsuario",json=datos)
+	except requests.exceptions.ConnectionError as e:
+		u.alerta("No hay conexión\ndel servidor")
+	else:
+		u.alerta(response.text)
+
+def eliminarUsuario(usuario):
+	try:
+		response=requests.delete(URL+"eliminarUsuario/"+str(usuario))
+	except requests.exceptions.ConnectionError as e:
+		u.alerta("No hay conexión\ndel servidor")
+	else:
+		u.alerta(response.text)
+
 
 
