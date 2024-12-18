@@ -18,9 +18,13 @@ class pdf():
 		self.fuente("helvetica","",16)
 		
 		self.pdf.ln(20)
-		self.texto("Este fue el registro de las entradas y salidas dentro del plantel:")
+		self.texto("Este fue el registro de entradas y salidas de los alumnos dentro del plantel:")
 
 		self.tabla()
+
+		self.pdf.ln(10)
+		self.fuente('helvetica','',10)
+		self.texto('Esta fue la información recopilada hasta el momento')
 
 		self.pdf.output('hola.pdf')
 	
@@ -55,20 +59,18 @@ class pdf():
 			["boleta17","10:15","14:30"],
 			["boleta18","10:15","14:30"]
 		]
-
-		ancho=[50,50,50]
-
 		#Para agregar los encabezados
-		for i,titulo in enumerate(titulos):
-			self.pdf.cell(ancho[i],titulo,border=1,align="C")
+		self.pdf.ln()
+		for titulo in titulos:
+			self.pdf.cell(60,10,titulo,1,0,'C')
 		self.pdf.ln()
 
-		#Para el contenido
-		for fila in info:
-			for i,celda in enumerate(fila):
-				self.pdf.cell(ancho[i],10,celda,border=1,align="C")
+		#Para agregar el contenido a la tabla
+		for i in info:
+			for datos in i:
+				self.pdf.cell(60,10,datos,1,0,'C')
 			self.pdf.ln()
-
+		self.pdf.ln()
 
 doc=pdf()
 

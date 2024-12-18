@@ -19,6 +19,9 @@ class MiFrame(ctk.CTkFrame):
 		u.agregarBoton(self,"Eliminar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.eliminarUsuario,2,1,20,20,"w")
 		u.agregarBoton(self,"Agregar administrador",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.agregarUsuario,3,1,20,20,"w")
 
+		#Botón para obtener el registro de entrada y salida de los alumnos
+		u.agregarBoton(self,"Obtener registro",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,self.reporte,4,1,20,20,"w")
+
 	def actualizarAlumno(self):
 		f.ventanaActualizarAlumno(self.master)
 
@@ -36,6 +39,9 @@ class MiFrame(ctk.CTkFrame):
 
 	def agregarUsuario(self):
 		f.ventanaAgregarUsuario(self.master)
+
+	def reporte(self):
+		pass
 
 class Inicio(ctk.CTk):
 	def __init__(self):
