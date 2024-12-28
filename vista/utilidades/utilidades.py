@@ -1,6 +1,23 @@
 import customtkinter as ctk
+from PIL import Image
 from utilidades import funciones as f
 from utilidades import configuraciones as c
+
+def agregarImagen(root,ruta,tamx,tamy,fila,columna,x,y,s):
+	imagen=ctk.CTkImage(
+		light_image=Image.open(ruta),
+		dark_image=Image.open(ruta),
+		size=(tamx,tamy))
+
+	imagenEtiqueta=ctk.CTkLabel(
+		root,
+		image=imagen,
+		text="")
+
+	if fila==-1:
+		imagenEtiqueta.pack(pady=y,padx=x,side=s)
+	else:
+		imagenEtiqueta.grid(row=fila,column=columna,padx=x,pady=y,sticky=s)
 
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(
@@ -83,6 +100,8 @@ def frameInfoAlumno(root):
 
 	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
 	root.frame.grid_columnconfigure(0, weight=1)
+
+	agregarImagen(root,"img/usuario.png",150,150,1,2,20,20,'e')
 
 	root.boleta=agregarCampoInfo(root,"Boleta","Ingrese su boleta","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
 	root.nombre=agregarCampoInfo(root,"Nombre","Nombre del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
