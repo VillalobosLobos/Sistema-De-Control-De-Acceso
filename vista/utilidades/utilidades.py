@@ -1,6 +1,16 @@
 import customtkinter as ctk
+from PIL import Image
 from utilidades import funciones as f
 from utilidades import configuraciones as c
+
+def agregarImagen(root,ruta,x,y):
+	imagen=ctk.CTkImage(
+		light_image=Image.open(ruta),
+		dark_image=Image.open(ruta),
+		size=(x,y))
+
+	etiquetaImagen=ctk.CTkLabel(root,image=imagen,text="")
+	return etiquetaImagen
 
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(
