@@ -8,8 +8,8 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Agregando los escudos
-		u.agregarImagen(self,"img/cet1.png",c.cet1x,c.cet1y,0,2,20,20,"e")
-		u.agregarImagen(self,"img/ipn.png",c.ipnx,c.ipny,0,0,20,20,"e")
+		u.agregarImagen(self,"utilidades/img/cet1.png",c.cet1x,c.cet1y,0,2,20,20,"e")
+		u.agregarImagen(self,"utilidades/img/ipn.png",c.ipnx,c.ipny,0,0,20,20,"e")
 
 		#Para las etiquetas de texto
 		u.agregarEtiqueta(self,"Inicio de sesión","white",80,0,1,20,20,"ew")
