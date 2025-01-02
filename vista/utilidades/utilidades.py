@@ -3,14 +3,19 @@ from PIL import Image
 from utilidades import funciones as f
 from utilidades import configuraciones as c
 
-def agregarImagen(root,ruta,x,y):
+def agregarImagen(root,ruta,tamX,tamY,fila,columna,x,y,s):
 	imagen=ctk.CTkImage(
 		light_image=Image.open(ruta),
 		dark_image=Image.open(ruta),
-		size=(x,y))
+		size=(tamX,tamY))
 
 	etiquetaImagen=ctk.CTkLabel(root,image=imagen,text="")
-	return etiquetaImagen
+	etiquetaImagen.image=imagen
+	
+	if fila==-1:
+		etiquetaImagen.pack(pady=y,padx=x,side=s)
+	else:
+		etiquetaImagen.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
 
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(
@@ -99,6 +104,9 @@ def frameInfoAlumno(root):
 	root.grupos=agregarCampoInfo(root,"Grupos","Grupos del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoGrupos,-1,-1,5,10,"left")
 	root.turno=agregarCampoInfo(root,"Turno","Turno del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoTurno,-1,-1,5,10,"left")
 	root.especialidad=agregarCampoInfo(root,"Especialidad","Carrera del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoEspecialidad,-1,-1,5,10,"left")
+
+	#Para agregar la imagen
+	agregarImagen(root,"utilidades/img/usuario.png",100,100,0,2,20,20,"w")
 
 	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarAlumno(root),2,1,350,20,"e")
 	agregarBoton(root,"Registrar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:registrarEntrada(root),2,1,20,20,"w")

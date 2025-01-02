@@ -7,6 +7,10 @@ class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
 		super().__init__(master,**kwargs)
 
+		#Para agregar imagenes
+		u.agregarImagen(self,"utilidades/img/cet1.png",150,150,0,0,20,20,"ew")
+		u.agregarImagen(self,"utilidades/img/ipn.png",150,150,0,2,20,20,"ew")
+
 		#Para las etiquetas de texto
 		u.agregarEtiqueta(self,"Inicio de sesión","white",80,0,1,20,20,"ew")
 		u.agregarEtiqueta(self,"Usuario","white",40,2,1,20,20,"w")
