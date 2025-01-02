@@ -21,7 +21,7 @@ class Inicio(ctk.CTk):
 
 		#Agregando nuestro frame
 		self.mi_frame=MiFrame(master=self)
-		self.mi_frame.configure(fg_color=c.verde)
+		self.mi_frame.configure(fg_color="blue")#c.verde)
 		self.mi_frame.grid(row=0,column=0,padx=20,pady=20,sticky="nsew")
 
 		self.grid_rowconfigure(0,weight=1) #Fila 0 ocupara más espacio

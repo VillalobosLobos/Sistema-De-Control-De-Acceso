@@ -1,16 +1,25 @@
 import customtkinter as ctk
-from PIL import Image
+from PIL import Image,ImageTk
 from utilidades import funciones as f
 from utilidades import configuraciones as c
 
 def agregarImagen(root,ruta,tamX,tamY,fila,columna,x,y,s):
-	imagen=ctk.CTkImage(
-		light_image=Image.open(ruta),
-		dark_image=Image.open(ruta),
-		size=(tamX,tamY))
+	oscuro=Image.open(ruta)
+	blanco=Image.open(ruta)
 
-	etiquetaImagen=ctk.CTkLabel(root,image=imagen,text="")
-	etiquetaImagen.image=imagen
+	try:
+		root.imagen=ctk.CTkImage(
+			light_image=blanco,
+			dark_image=oscuro,
+			size=(tamX,tamY))
+	except Exception as e:
+		print(f"El error es: {e}")
+
+	try:
+		etiquetaImagen=ctk.CTkLabel(root,image=root.imagen,text="")
+		etiquetaImagen.image=root.imagen
+	except Exception as e:
+		print(f"El error es: {e}")
 	
 	if fila==-1:
 		etiquetaImagen.pack(pady=y,padx=x,side=s)
@@ -85,7 +94,7 @@ def agregarCampoInfo(root,txtE,txtC,color,tamE,tamC,altura,ancho,fila,columna,x,
 	root.frameCampo=ctk.CTkFrame(root.frame)
 	root.frameCampo.configure(fg_color=c.verde)
 	root.frameCampo.pack(pady=5,padx=10,anchor="w")
-	root.frame.configure(fg_color=c.verde)
+	root.frame.configure(fg_color="red")#c.verde)
 
 	agregarEtiqueta(root.frameCampo,txtE,color,tamE,fila,columna,x,y,s)
 	campo=agregarCampo(root.frameCampo,txtC,altura,ancho,tamC,fila,columna,x,y,s)
@@ -94,21 +103,18 @@ def agregarCampoInfo(root,txtE,txtC,color,tamE,tamC,altura,ancho,fila,columna,x,
 def frameInfoAlumno(root):
 	root.frame = ctk.CTkFrame(root)
 	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
-	root.frame.configure(fg_color=c.verde)
+	root.frame.configure(fg_color="white")#c.verde)
+
+	agregarImagen(root.frame,"utilidades/img/ipn.png",100,100,1,0,20,20,"w")
 
 	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
 	root.frame.grid_columnconfigure(0, weight=1)
-
-	agregarImagen(root,"utilidades/img/usuario.png",150,150,1,2,20,20,"e")
 
 	root.boleta=agregarCampoInfo(root,"Boleta","Ingrese su boleta","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
 	root.nombre=agregarCampoInfo(root,"Nombre","Nombre del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
 	root.grupos=agregarCampoInfo(root,"Grupos","Grupos del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoGrupos,-1,-1,5,10,"left")
 	root.turno=agregarCampoInfo(root,"Turno","Turno del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoTurno,-1,-1,5,10,"left")
 	root.especialidad=agregarCampoInfo(root,"Especialidad","Carrera del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoEspecialidad,-1,-1,5,10,"left")
-
-	#Para agregar la imagen
-	agregarImagen(root,"utilidades/img/usuario.png",100,100,0,2,20,20,"w")
 
 	agregarBoton(root,"Buscar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:buscarAlumno(root),2,1,350,20,"e")
 	agregarBoton(root,"Registrar",c.tamLetra,c.verdeFuerte,c.verdeClaro,300,9,lambda:registrarEntrada(root),2,1,20,20,"w")
