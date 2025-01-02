@@ -12,6 +12,12 @@ fuente="Impact"
 tituloAlerta="Mensaje de error"
 tamAlerta=30
 
+#Tamaño de las imagenes
+cet1x=150
+cet1y=150
+ipnx=150
+ipny=150
+
 #Para los campos del archivo utilidades
 tamLetra=20 #40
 tamEtiqueta=20 #40

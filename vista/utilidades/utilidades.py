@@ -99,6 +99,8 @@ def frameInfoAlumno(root):
 	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
 	root.frame.grid_columnconfigure(0, weight=1)
 
+	agregarImagen(root,"utilidades/img/usuario.png",150,150,1,2,20,20,"e")
+
 	root.boleta=agregarCampoInfo(root,"Boleta","Ingrese su boleta","white",c.tamLetra,c.tamCampo,c.altura,c.anchoBoleta,-1,-1,5,10,"left")
 	root.nombre=agregarCampoInfo(root,"Nombre","Nombre del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoNombre,-1,-1,5,10,"left")
 	root.grupos=agregarCampoInfo(root,"Grupos","Grupos del alumno","white",c.tamLetra,c.tamCampo,c.altura,c.anchoGrupos,-1,-1,5,10,"left")
