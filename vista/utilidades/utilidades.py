@@ -17,11 +17,11 @@ def agregarImagen(root,ruta,tamX,tamY,fila,columna,x,y,s):
 		etiquetaImagen.image=root.imagen
 	except Exception as e:
 		print(f"El error dos es: {e}")
-	
-	if fila==-1:
-		etiquetaImagen.pack(pady=y,padx=x,side=s)
 	else:
-		etiquetaImagen.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
+		if fila==-1:
+			etiquetaImagen.pack(pady=y,padx=x,side=s)
+		else:
+			etiquetaImagen.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
 
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(
