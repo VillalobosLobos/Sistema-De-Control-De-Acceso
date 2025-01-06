@@ -2,27 +2,20 @@ import customtkinter as ctk
 from PIL import Image,ImageTk
 from utilidades import funciones as f
 from utilidades import configuraciones as c
+import os
 
-def agregarImagen(root,ruta,tamX,tamY,fila,columna,x,y,s):
-	oscuro=Image.open(ruta)
-	blanco=Image.open(ruta)
+def agregarImagen(root,nombre,ruta,ancho,largo,fila,columna,x,y,s):
+	imagen=ctk.CTkImage(light_image=Image.open(ruta),
+			dark_image=Image.open(ruta),
+			size=(100,100))
 
-	try:
-		root.imagen=ctk.CTkImage(
-			light_image=blanco,
-			dark_image=oscuro,
-			size=(tamX,tamY))
+	imagenEtiqueta=ctk.CTkLabel(
+				root,
+				image=imagen,
+				text="")
+	return imagenEtiqueta
 
-		etiquetaImagen=ctk.CTkLabel(root,image=root.imagen,text="")
-		etiquetaImagen.image=root.imagen
-	except Exception as e:
-		print(f"El error dos es: {e}")
-	else:
-		if fila==-1:
-			etiquetaImagen.pack(pady=y,padx=x,side=s)
-		else:
-			etiquetaImagen.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
-
+	
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(
 		root,
@@ -101,8 +94,6 @@ def frameInfoAlumno(root):
 	root.frame = ctk.CTkFrame(root)
 	root.frame.grid(row=1, column=1, padx=20, pady=20, sticky="nwes")
 	root.frame.configure(fg_color="white")#c.verde)
-
-	agregarImagen(root.frame,"utilidades/img/ipn.png",100,100,1,0,20,20,"w")
 
 	root.frame.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
 	root.frame.grid_columnconfigure(0, weight=1)

@@ -1,0 +1,18 @@
+import customtkinter as ctk
+import configuraciones as c
+
+def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,comando,fila,columna,x,y,s):
+	boton=ctk.CTkButton(
+			root,
+			text=txt,
+			font=(c.fuente,int(tam)),
+			fg_color=colorFondo,
+			hover_color=colorHover,
+			width=ancho,
+			corner_radius=radio,
+			command=comando)
+	if s==-1:
+		boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y))
+	else:
+		boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
+
