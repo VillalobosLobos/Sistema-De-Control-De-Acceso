@@ -3,18 +3,16 @@ from PIL import Image
 from .imagenes import agregarImagen as img
 import configuraciones as c
 
-def botonImagen(self,ruta,fila,columna,x,y,s):
+def foto(self,ruta,posx,posy,x,y):
 	botonAtras=ctk.CTkButton(
 			master=self,
 			text="",
 			image=img(ruta,x,y),
-			command=self.cerrar,
-			fg_color=c.verdeFuerte,
-			hover_color=c.verdeClaro,
-			width=40,
-			height=40,
+			#command=self.cerrar,
+			fg_color=c.verde,
+			hover_color=c.verde,
+			width=x,
+			height=y,
 			corner_radius=10)
 
-	botonAtras.grid(row=fila,column=columna,padx=20,pady=20,sticky=s)
-
-
+	botonAtras.place(x=posx,y=posy)

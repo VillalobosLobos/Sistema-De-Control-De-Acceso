@@ -12,7 +12,7 @@ def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,comando,fila,col
 			corner_radius=radio,
 			command=comando)
 	if s==-1:
-		boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y))
+		boton.place(x=x,y=y)
 	else:
 		boton.grid(row=int(fila),column=int(columna),padx=int(x),pady=int(y),sticky=s)
 

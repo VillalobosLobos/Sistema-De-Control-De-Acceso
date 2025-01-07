@@ -19,7 +19,7 @@ class MiFrame(ctk.CTkFrame):
 		self.contraseñaCampo=campo(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
 
 		#Para agregar botones
-		boton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,4,1,20,20,-1)
+		boton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,-1,-1,310,350,-1)
 
 	def ingresar(self):
 		ingreso(self.usuarioCampo.get(),self.contraseñaCampo.get(),self.master)

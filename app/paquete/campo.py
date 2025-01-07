@@ -11,7 +11,7 @@ def agregarCampo(root,txt,altura,ancho,tam,fila,columna,x,y,s):
 		bg_color=c.verde)
 
 	if fila==-1 or columna==-1:
-		campo.pack(pady=y,padx=x,side=s)
+		campo.place(x=x,y=y)
 	else:
 		campo.grid(row=fila,column=columna,padx=x,pady=y,sticky=s)
 	return campo

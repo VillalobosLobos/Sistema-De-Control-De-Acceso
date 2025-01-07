@@ -10,7 +10,7 @@ def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 			bg_color=c.verde)
 
 	if fila==-1 or columna==-1:
-		etiqueta.pack(pady=y,padx=x,side=s)
+		etiqueta.place(x=x,y=y)
 	else:
 		etiqueta.grid(row=fila,column=columna,padx=x,pady=y,sticky=s)
 
