@@ -1,3 +1,4 @@
+from .vigilante import Inicio as v
 import requests
 import json
 
@@ -14,14 +15,9 @@ def ingresar(usuario,contraseña,root):
 		print("No hay conexión\ndel servidor")
 	else:
 		if response.text=="Correcto" and usuario[0]=='V':
-			print("vigilante")
-			'''
 			root.withdraw()
-			ventana=v.Inicio()
+			ventana=v()
 			ventana.configure(fg_color="white")
-			ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
-			ventana.mainloop()
-			'''
 		elif response.text=="Correcto" and usuario[0]=='A':
 			print("administrador")
 			'''
