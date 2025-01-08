@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request,send_file
 import mysql.connector
 from flask import jsonify
 
@@ -17,6 +17,14 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	return "Servidor vivo"
+
+@app.route('/imagen/<nombre>')
+def imagen(nombre):
+	ruta=f'fotos/{nombre}'
+	try:
+		return send_file(ruta,mimetype='image/jpeg')
+	except FileNotFoundError:
+		return {"error":"Imagen no encontrada"},404
 
 @app.route('/info/<int:boleta>',methods=['GET'])
 def info(boleta):

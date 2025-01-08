@@ -10,16 +10,16 @@ class MiFrame(ctk.CTkFrame):
 		super().__init__(master,**kwargs)
 
 		#Para las etiquetas de texto
-		etiqueta(self,"Inicio de sesión","white",80,0,1,20,20,"ew")
-		etiqueta(self,"Usuario","white",40,2,1,20,20,"w")
-		etiqueta(self,"Contraseña","white",40,3,1,20,20,"w")
+		etiqueta(self,"Inicio de sesión","white",80,-1,-1,220,30,"ew")
+		etiqueta(self,"Usuario","white",40,-1,-1,260,200,"w")
+		etiqueta(self,"Contraseña","white",40,3,1,200,260,"w")
 
 		#Para los campos de texto
-		self.usuarioCampo=campo(self,"Ingrese su usuario",50,320,30,2,1,20,20,"e")
-		self.contraseñaCampo=campo(self,"Ingrese su contraseña",50,320,30,3,1,20,20,"e")
+		self.usuarioCampo=campo(self,"Ingrese su usuario",50,320,30,-1,-1,406,200,"e")
+		self.contraseñaCampo=campo(self,"Ingrese su contraseña",50,320,30,-1,-1,405,260,"e")
 
 		#Para agregar botones
-		boton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,-1,-1,310,350,-1)
+		boton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,-1,-1,320,350,-1)
 
 	def ingresar(self):
 		ingreso(self.usuarioCampo.get(),self.contraseñaCampo.get(),self.master)

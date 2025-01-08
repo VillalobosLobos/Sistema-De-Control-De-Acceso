@@ -10,6 +10,9 @@ import configuraciones as c
 from .buscar import buscar
 from .alerta import alerta
 from .registrar import registrar
+import requests
+from PIL import Image
+from io import BytesIO
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -49,6 +52,19 @@ class MiFrame(ctk.CTkFrame):
 		boleta=self.campoBoleta.get()
 		registrar(boleta)
 
+	def fotoUsuario(self,boleta):
+		url=f'http://127.0.0.1:8000/imagen/{boleta}.png'
+		response=requests.get(url)
+		if response.status_code==200:
+			imagen = ctk.CTkImage(light_image=Image.open(BytesIO(response.content)),
+			dark_image=Image.open(BytesIO(response.content)),
+			size=(250, 250))
+
+			foto=ctk.CTkLabel(self,image=imagen,text='')
+			foto.place(x=683,y=100)
+		else:
+			print("Imagen no encontrada")
+
 	def info(self):
 		boleta=self.campoBoleta.get()
 		informacion=buscar(boleta)
@@ -61,6 +77,8 @@ class MiFrame(ctk.CTkFrame):
 		self.campoTurno.insert(0,informacion["turno"])
 		self.campoEspecialidad.delete(0,"end")
 		self.campoEspecialidad.insert(0,informacion["especialidad"])
+
+		self.fotoUsuario(boleta)
 
 class Inicio(ctk.CTkToplevel):
 	def __init__(self):
