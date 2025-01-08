@@ -7,6 +7,9 @@ from .campo import agregarCampo as campo
 from .boton import agregarBoton as boton
 from .foto import foto
 import configuraciones as c
+from .buscar import buscar
+from .alerta import alerta
+from .registrar import registrar
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -25,22 +28,39 @@ class MiFrame(ctk.CTkFrame):
 		etiqueta(self,"Especialidad","white",30,-1,-1,10,290,"w")
 
 		#Campos de texto
-		campoBoleta = campo(self,"Ingrese la boleta",c.altura,580,c.tamLetra,-1,-1,100,132,"w")
-		campoNombre = campo(self,"Nombre del alumno",c.altura,558,c.tamLetra,-1,-1,120,172,"w")
-		campoGrupos = campo(self,"Grupos del alumno",c.altura,567,c.tamLetra,-1,-1,110,212,"w")
-		campoTruno = campo(self,"Turno del alumno",c.altura,588,c.tamLetra,-1,-1,90,252,"w")
-		campoEspecialidad = campo(self,"Especialidad del alumno",c.altura,500,c.tamLetra,-1,-1,180,292,"w")
+		self.campoBoleta = campo(self,"Ingrese la boleta",c.altura,580,c.tamLetra,-1,-1,100,132,"w")
+		self.campoNombre = campo(self,"Nombre del alumno",c.altura,558,c.tamLetra,-1,-1,120,172,"w")
+		self.campoGrupos = campo(self,"Grupos del alumno",c.altura,567,c.tamLetra,-1,-1,110,212,"w")
+		self.campoTurno = campo(self,"Turno del alumno",c.altura,588,c.tamLetra,-1,-1,90,252,"w")
+		self.campoEspecialidad = campo(self,"Especialidad del alumno",c.altura,500,c.tamLetra,-1,-1,180,292,"w")
 
 		#Botones
-		boton(self,"Buscar",40,c.verdeFuerte,c.verdeClaro,100,10,"",-1,-1,250,400,-1)
-		boton(self,"Registrar",40,c.verdeFuerte,c.verdeClaro,100,10,"",-1,-1,530,400,-1)
+		boton(self,"Buscar",40,c.verdeFuerte,c.verdeClaro,100,10,self.info,-1,-1,250,400,-1)
+		boton(self,"Registrar",40,c.verdeFuerte,c.verdeClaro,100,10,self.registrarES,-1,-1,530,400,-1)
 
 		#Para la imagen del usuario
 		foto(self,"paquete/img/usuario.png",680,100,250,250)
 
 	def cerrar(self):
 		self.master.destroy()
-		self.master.master.deiconify()		
+		self.master.master.deiconify()
+
+	def registrarES(self):
+		boleta=self.campoBoleta.get()
+		registrar(boleta)
+
+	def info(self):
+		boleta=self.campoBoleta.get()
+		informacion=buscar(boleta)
+
+		self.campoNombre.delete(0,"end")
+		self.campoNombre.insert(0,informacion["nombre"])
+		self.campoGrupos.delete(0,"end")
+		self.campoGrupos.insert(0,informacion["grupos"])
+		self.campoTurno.delete(0,"end")
+		self.campoTurno.insert(0,informacion["turno"])
+		self.campoEspecialidad.delete(0,"end")
+		self.campoEspecialidad.insert(0,informacion["especialidad"])
 
 class Inicio(ctk.CTkToplevel):
 	def __init__(self):

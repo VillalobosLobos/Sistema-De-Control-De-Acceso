@@ -1,4 +1,5 @@
 from .vigilante import Inicio as v
+from .alerta import alerta
 import requests
 import json
 
@@ -12,7 +13,7 @@ def ingresar(usuario,contraseña,root):
 	try:
 		response=requests.post(URL+"login",json=datos)
 	except requests.exceptions.ConnectionError as e:
-		print("No hay conexión\ndel servidor")
+		alerta("No hay conexión\ndel servidor")
 	else:
 		if response.text=="Correcto" and usuario[0]=='V':
 			root.withdraw()
@@ -28,4 +29,4 @@ def ingresar(usuario,contraseña,root):
 			ventana.mainloop()
 			'''
 		else:
-			print("Error en el usuario \no contraseña")
+			alerta("Error en el usuario \no contraseña")
