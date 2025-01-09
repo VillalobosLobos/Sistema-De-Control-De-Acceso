@@ -232,14 +232,14 @@ def login():
 	contraseña=info.get('contraseña')
 
 	cursor=coneccion.cursor()	
-	cursor.execute("select contraseña from usuarios where usuario=%s;",(usuario,))
+	cursor.execute("select contraseña,rol from usuarios where usuario=%s;",(usuario,))
 	resultado=cursor.fetchone()
 	cursor.close()
 
 	if resultado is None:
 		return "Error al ingresar"
 	elif resultado[0]==contraseña:
-		return "Correcto"
+		return resultado[1]
 	else:
 		return "Error al ingresar"
 

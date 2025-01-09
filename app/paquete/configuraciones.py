@@ -9,7 +9,7 @@ verdeClaro="#03b25f"
 fuente="Impact"
 
 #Tamaño de letra para la alerta
-tituloAlerta="Mensaje de error"
+tituloAlerta="Alerta"
 tamAlerta=30
 
 #Tamaño de las imagenes

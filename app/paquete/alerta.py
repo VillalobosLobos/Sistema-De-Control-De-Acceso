@@ -2,8 +2,9 @@ import customtkinter as ctk
 import configuraciones as c
 
 def alerta(txt):
-	root=ctk.CTkToplevel()
-	root.title(c.tituloAlerta)
+	root=ctk.CTkToplevel()	
+	root.resizable(False,False)
+	root.title("")
 	root.geometry("300x200")
 	root.configure(fg_color=c.verdeFuerte)
 

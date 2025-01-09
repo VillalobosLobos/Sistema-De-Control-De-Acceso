@@ -15,11 +15,11 @@ def ingresar(usuario,contraseña,root):
 	except requests.exceptions.ConnectionError as e:
 		alerta("No hay conexión\ndel servidor")
 	else:
-		if response.text=="Correcto" and usuario[0]=='V':
+		if response.text=="Vigilante":
 			root.withdraw()
 			ventana=v()
 			ventana.configure(fg_color="white")
-		elif response.text=="Correcto" and usuario[0]=='A':
+		elif response.text=="Administrador":
 			print("administrador")
 			'''
 			root.withdraw()
