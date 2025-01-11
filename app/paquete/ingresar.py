@@ -1,4 +1,5 @@
 from .vigilante import Inicio as v
+from .administrador import Inicio as a
 from .alerta import alerta
 import requests
 import json
@@ -20,13 +21,8 @@ def ingresar(usuario,contraseña,root):
 			ventana=v()
 			ventana.configure(fg_color="white")
 		elif response.text=="Administrador":
-			print("administrador")
-			'''
 			root.withdraw()
-			ventana=a.Inicio()
+			ventana=a()
 			ventana.configure(fg_color="white")
-			ventana.protocol("WM_DELETE_WINDOW", lambda: aparecer(root,ventana))
-			ventana.mainloop()
-			'''
 		else:
 			alerta("Error en el usuario \no contraseña")

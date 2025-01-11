@@ -1,6 +1,8 @@
 from flask import Flask, request,send_file
 import mysql.connector
 from flask import jsonify
+from mysql.connector import Error
+from mysql.connector.errors import IntegrityError
 
 coneccion=mysql.connector.connect(
 	host="localhost",
@@ -17,6 +19,16 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	return "Servidor vivo"
+
+@app.route('/subirImagen/<nombre>',methods=['POST'])
+def subirImagen(nombre):
+	if 'imagen' not in request.files:
+		return jsonify({"error": "No se envió ninguna imagen"}), 400
+
+	imagen=request.files['imagen']
+	ruta=f"./fotos/{nombre}"
+	imagen.save(ruta)
+	return jsonify({"mensaje": "Imagen subida correctamente", "ruta": ruta}), 200
 
 @app.route('/imagen/<nombre>')
 def imagen(nombre):
@@ -97,11 +109,16 @@ def altaAlumno():
 	foto=info.get('foto')
 
 	cursor=coneccion.cursor()
-	cursor.execute("insert into alumnos (boleta, nombre, grupos, turno, especialidad, estado,foto) values (%s, %s, %s, %s, %s, %s, %s);",(boleta,nombre,grupos,turno,especialidad,estado,foto))
-	coneccion.commit()
-	cursor.close()
-	
-	return "Registro exitoso"
+	try:
+		cursor.execute("insert into alumnos (boleta, nombre, grupos, turno, especialidad, estado,foto) values (%s, %s, %s, %s, %s, %s, %s);",(boleta,nombre,grupos,turno,especialidad,estado,foto))
+		coneccion.commit()
+		return "Registro éxitoso"
+	except IntegrityError as e:
+		return "Esa boleta ya\nexiste"
+	except Error as e:
+			return "Error en conexión\no en el SQL"
+	finally:
+		cursor.close()
 
 @app.route('/altaUsuario',methods=['POST'])
 def altaUsuario():
