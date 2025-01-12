@@ -8,6 +8,6 @@ def  buscar(boleta):
 	try:
 		return json.loads(requests.get(URL+"info/"+boleta).text)
 	except json.decoder.JSONDecodeError as e:
-		alerta("No sé encontro \nel usuario")
+		alerta("No se encontro \nel usuario")
 	else:
 		alerta("No se ingreso una\n boleta válida")
