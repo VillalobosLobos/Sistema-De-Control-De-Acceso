@@ -8,6 +8,9 @@ from .etiquetaImagen import etiquetaImagen
 from .agregarAlumno import Inicio as ae
 from .actualizarAlumno import Inicio as ue
 from .eliminarAlumno import Inicio as ea
+from .agregarUsuario import Inicio as au
+from .actualizarUsuario import Inicio as uu
+from .eliminarUsuario import Inicio as eu
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -25,9 +28,9 @@ class MiFrame(ctk.CTkFrame):
 		boton(self,"Eliminar",30,c.verdeFuerte,c.verdeClaro,100,10,self.eliminarEstudiante,-1,-1,190,440,-1)
 
 		#Botones Administrador
-		boton(self,"Agregar",30,c.verdeFuerte,c.verdeClaro,100,10,"",-1,-1,640,320,-1)
-		boton(self,"Actualizar",30,c.verdeFuerte,c.verdeClaro,100,10,"",-1,-1,630,380,-1)
-		boton(self,"Eliminar",30,c.verdeFuerte,c.verdeClaro,100,10,"",-1,-1,640,440,-1)
+		boton(self,"Agregar",30,c.verdeFuerte,c.verdeClaro,100,10,self.agregarUsuario,-1,-1,640,320,-1)
+		boton(self,"Actualizar",30,c.verdeFuerte,c.verdeClaro,100,10,self.actualziarUsuario,-1,-1,630,380,-1)
+		boton(self,"Eliminar",30,c.verdeFuerte,c.verdeClaro,100,10,self.eliminarUsuario,-1,-1,640,440,-1)
 
 		#Apartado de Alumno
 		etiquetaImagen(self,"paquete/img/libro.png",150,80,200,200)
@@ -54,6 +57,21 @@ class MiFrame(ctk.CTkFrame):
 	def eliminarEstudiante(self):
 		self.master.withdraw()
 		ventana=ea()
+		ventana.configure(fg_color="white")
+
+	def agregarUsuario(self):
+		self.master.withdraw()
+		ventana=au()
+		ventana.configure(fg_color="white")
+
+	def actualziarUsuario(self):
+		self.master.withdraw()
+		ventana=uu()
+		ventana.configure(fg_color="white")
+
+	def eliminarUsuario(self):
+		self.master.withdraw()
+		ventana=eu()
 		ventana.configure(fg_color="white")
 
 class Inicio(ctk.CTkToplevel):

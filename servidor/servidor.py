@@ -84,7 +84,9 @@ def infoUsuario(usuario):
 
 	salida={
 		"usuario":resultados[0][0],
+		"contraseña":resultados[0][1],
 		"turno":resultados[0][2],
+		"rol":resultados[0][3]
 	}
 
 	return jsonify(salida)
@@ -133,13 +135,20 @@ def altaUsuario():
 	usuario=info.get('usuario')
 	contraseña=info.get('contraseña')
 	turno=info.get('turno')
+	rol=info.get('rol')
 
 	cursor=coneccion.cursor()
-	cursor.execute("insert into usuarios (usuario, contraseña, turno) values (%s, %s, %s);",(usuario,contraseña,turno))
-	coneccion.commit()
-	cursor.close()
-	
-	return "Registro exitoso"
+	try:
+		cursor.execute("insert into usuarios (usuario, contraseña, turno, rol) values (%s, %s, %s, %s);",(usuario,contraseña,turno,rol))
+		coneccion.commit()
+		cursor.close()
+		return "Registro exitoso"
+	except IntegrityError as e:
+		return "Ese usuario ya\nexiste"
+	except Error as e:
+			return "Error en conexión\no en el SQL"
+	finally:
+		cursor.close()
 
 @app.route('/actualizarAlumno',methods=['POST'])
 def actualizarAlumno():
@@ -178,9 +187,11 @@ def actualizarUsuario():
 	info=request.json
 	usuario=info.get('usuario')
 	turno=info.get('turno')
+	contraseña=info.get('contraseña')
+	rol=info.get('rol')
 	
 	cursor=coneccion.cursor()
-	cursor.execute("update usuarios set usuario=%s, turno=%s where usuario=%s",(usuario,turno,usuario))
+	cursor.execute("update usuarios set usuario=%s,contraseña=%s, turno=%s, rol=%s where usuario=%s",(usuario,contraseña,turno,rol,usuario))
 	coneccion.commit()
 	cursor.close()
 	
