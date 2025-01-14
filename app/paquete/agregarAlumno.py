@@ -65,6 +65,14 @@ class MiFrame(ctk.CTkFrame):
 		elif self.imagen=="e":
 			alerta("Falta ingresar\nla foto del\nestudiante")
 		else:
+			agregarEstudiante(
+					self.campoBoleta.get(),
+					self.campoNombre.get(),
+					self.campoGrupos.get(),
+					self.campoTurno.get(),
+					self.campoEspecialidad.get(),
+					self.campoBoleta.get())
+
 			with open(self.imagen,'rb') as archivo:
 				archivos={
 					"imagen":archivo
@@ -74,13 +82,6 @@ class MiFrame(ctk.CTkFrame):
 				if respuesta.status_code!=200:
 					alerta("Error al subir \nla imagen")
 
-			agregarEstudiante(
-					self.campoBoleta.get(),
-					self.campoNombre.get(),
-					self.campoGrupos.get(),
-					self.campoTurno.get(),
-					self.campoEspecialidad.get(),
-					self.campoBoleta.get())
 		
 
 	def examinar(self):

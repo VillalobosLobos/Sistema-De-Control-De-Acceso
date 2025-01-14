@@ -3,6 +3,7 @@ import mysql.connector
 from flask import jsonify
 from mysql.connector import Error
 from mysql.connector.errors import IntegrityError
+import os
 
 coneccion=mysql.connector.connect(
 	host="localhost",
@@ -19,6 +20,23 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	return "Servidor vivo"
+
+@app.route('/reporte', methods=['GET', 'POST'])
+def reporte():
+	cursor=coneccion.cursor()
+	cursor.execute("SELECT boleta,estado,TIME(actualizar) AS hora FROM alumnos WHERE DATE(actualizar)=CURDATE();")
+	resultados=cursor.fetchall()
+	resultados_serializables = [
+		{
+			"boleta": fila[0],
+			"estado": fila[1],
+			"hora": str(fila[2])
+		}
+		for fila in resultados
+	]
+
+	cursor.close()
+	return jsonify(resultados_serializables)
 
 @app.route('/subirImagen/<nombre>',methods=['POST'])
 def subirImagen(nombre):
@@ -189,6 +207,8 @@ def actualizarUsuario():
 	turno=info.get('turno')
 	contraseña=info.get('contraseña')
 	rol=info.get('rol')
+
+	#print(info)
 	
 	cursor=coneccion.cursor()
 	cursor.execute("update usuarios set usuario=%s,contraseña=%s, turno=%s, rol=%s where usuario=%s",(usuario,contraseña,turno,rol,usuario))
@@ -210,6 +230,8 @@ def eliminarAlumno(boleta):
 	cursor.execute("delete from  alumnos where boleta=%s;",(boleta,))
 	coneccion.commit()
 	cursor.close()
+
+	os.remove("fotos/"+boleta+".png")
 
 	return "Se a eliminado \ncorrectamente"
 
