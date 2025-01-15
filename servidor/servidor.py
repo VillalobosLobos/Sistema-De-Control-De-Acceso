@@ -230,8 +230,12 @@ def eliminarAlumno(boleta):
 	cursor.execute("delete from  alumnos where boleta=%s;",(boleta,))
 	coneccion.commit()
 	cursor.close()
+	ruta="fotos/"+str(boleta)+".png"
 
-	os.remove("fotos/"+boleta+".png")
+	if os.path.exists(ruta):
+		os.remove("fotos/"+str(boleta)+".png")
+	else:
+		return "No existe ese\nusuario"
 
 	return "Se a eliminado \ncorrectamente"
 

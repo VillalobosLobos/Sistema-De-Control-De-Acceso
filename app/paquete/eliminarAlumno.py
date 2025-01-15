@@ -15,6 +15,7 @@ from PIL import Image
 from io import BytesIO
 from .actualizarEstudiante import actualizarEstudiante
 from .eliminarEstudiante import eliminarEstudiante
+from .alerta import alerta
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -70,16 +71,19 @@ class MiFrame(ctk.CTkFrame):
 		boleta=self.campoBoleta.get()
 		informacion=buscar(boleta)
 
-		self.campoNombre.delete(0,"end")
-		self.campoNombre.insert(0,informacion["nombre"])
-		self.campoGrupos.delete(0,"end")
-		self.campoGrupos.insert(0,informacion["grupos"])
-		self.campoTurno.delete(0,"end")
-		self.campoTurno.insert(0,informacion["turno"])
-		self.campoEspecialidad.delete(0,"end")
-		self.campoEspecialidad.insert(0,informacion["especialidad"])
+		try:
+			self.campoNombre.delete(0,"end")
+			self.campoNombre.insert(0,informacion["nombre"])
+			self.campoGrupos.delete(0,"end")
+			self.campoGrupos.insert(0,informacion["grupos"])
+			self.campoTurno.delete(0,"end")
+			self.campoTurno.insert(0,informacion["turno"])
+			self.campoEspecialidad.delete(0,"end")
+			self.campoEspecialidad.insert(0,informacion["especialidad"])
 
-		self.fotoUsuario(boleta)
+			self.fotoUsuario(boleta)
+		except TypeError:
+			pass
 
 class Inicio(ctk.CTkToplevel):
 	def __init__(self):

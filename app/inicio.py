@@ -5,6 +5,7 @@ from paquete.campo import agregarCampo as campo
 from paquete.boton import agregarBoton as boton
 from paquete.ingresar import ingresar as ingreso
 from paquete.etiquetaImagen import etiquetaImagen as escudos
+from paquete.campoC import campoC
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -21,7 +22,7 @@ class MiFrame(ctk.CTkFrame):
 
 		#Para los campos de texto
 		self.usuarioCampo=campo(self,"Ingrese su usuario",50,320,30,-1,-1,406,200,"e")
-		self.contraseñaCampo=campo(self,"Ingrese su contraseña",50,320,30,-1,-1,405,260,"e")
+		self.contraseñaCampo=campoC(self,"Ingrese su contraseña",50,320,30,-1,-1,405,260,"e")
 
 		#Para agregar botones
 		boton(self,"Ingresar",40,c.verdeFuerte,c.verdeClaro,300,9,self.ingresar,-1,-1,320,350,-1)

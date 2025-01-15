@@ -14,6 +14,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 import json
+from paquete.campoC import campoC
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -30,7 +31,7 @@ class MiFrame(ctk.CTkFrame):
 
 		#Campos de texto
 		self.campoUsuario = campo(self,"Ingrese su usuario",c.altura,610,35,-1,-1,235,132,"w")
-		self.campoContraseña = campo(self,"Ingrese su contraseña",c.altura,558,35,-1,-1,290,192,"w")
+		self.campoContraseña = campoC(self,"Ingrese su contraseña",c.altura,558,35,-1,-1,290,192,"w")
 
 		#Combobox para el rol
 		rol=ctk.CTkComboBox(
