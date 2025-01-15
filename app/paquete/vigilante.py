@@ -53,7 +53,7 @@ class MiFrame(ctk.CTkFrame):
 		registrar(boleta)
 
 	def fotoUsuario(self,boleta):
-		url=f'http://127.0.0.1:8000/imagen/{boleta}.png'
+		url=f'http://127.0.0.1:8000/imagen/{boleta}.jpg'
 		response=requests.get(url)
 		if response.status_code==200:
 			imagen = ctk.CTkImage(light_image=Image.open(BytesIO(response.content)),

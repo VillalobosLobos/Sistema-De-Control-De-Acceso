@@ -109,7 +109,6 @@ def infoUsuario(usuario):
 
 	return jsonify(salida)
 
-
 @app.route('/altaAlumno',methods=['POST'])
 def altaAlumno():
 	'''
@@ -136,7 +135,7 @@ def altaAlumno():
 	except IntegrityError as e:
 		return "Esa boleta ya\nexiste"
 	except Error as e:
-			return "Error en conexión\no en el SQL"
+			return jsonify({"error": "Error en conexión o en el SQL", "details": str(e)}), 500
 	finally:
 		cursor.close()
 

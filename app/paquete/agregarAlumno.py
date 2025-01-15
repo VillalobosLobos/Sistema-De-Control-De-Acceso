@@ -15,6 +15,8 @@ import requests
 from PIL import Image,ImageTk
 from io import BytesIO
 from .agregarEstudiante import agregarEstudiante
+from .subirExcel import subirExcel
+import os
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
@@ -41,8 +43,10 @@ class MiFrame(ctk.CTkFrame):
 
 		self.imagen="e"
 		#Botones
-		boton(self,"Agregar",40,c.verdeFuerte,c.verdeClaro,100,10,self.agregarEstudiante,-1,-1,250,400,-1)
-		boton(self,"Examinar",40,c.verdeFuerte,c.verdeClaro,100,10,self.examinar,-1,-1,530,400,-1)
+		boton(self,"Agregar",40,c.verdeFuerte,c.verdeClaro,100,10,self.agregarEstudiante,-1,-1,20,400,-1)
+		boton(self,"Examinar",40,c.verdeFuerte,c.verdeClaro,100,10,self.examinar,-1,-1,220,400,-1)
+		boton(self,"Importar excel",40,c.verdeFuerte,c.verdeClaro,100,10,self.excel,-1,-1,430,400,-1)
+		boton(self,"subir fotos",40,c.verdeFuerte,c.verdeClaro,100,10,self.fotos,-1,-1,730,400,-1)
 
 		#Para la imagen del usuario
 		foto(self,"paquete/img/usuario.png",680,100,250,250)
@@ -87,7 +91,7 @@ class MiFrame(ctk.CTkFrame):
 	def examinar(self):
 		fotoUsuario=filedialog.askopenfilename(
 			title="Selecciona foto del estudiante",
-			filetypes=[("Archivos de imagen", "*.png")])
+			filetypes=[("Archivos de imagen", "*.png *jpg")])
 
 		if foto:
 			try:
@@ -96,6 +100,45 @@ class MiFrame(ctk.CTkFrame):
 			except Exception as e:
 				print(e)
 				alerta("Error en la imagen")
+
+	def fotos(self):
+		carpeta = filedialog.askdirectory(
+			title="Selecciona la carpeta que contiene las imágenes")
+		if carpeta:
+			try:
+				imagenes = [
+					os.path.join(carpeta, archivo)
+					for archivo in os.listdir(carpeta)
+					if archivo.lower().endswith(".jpg")
+				]
+
+				if not imagenes:
+					alerta("No se encontraron\nlas imagenes")
+				for imagen in imagenes:
+					with open(imagen,'rb') as archivo:
+						archivos={
+							"imagen":archivo
+						}
+
+						respuesta=requests.post("http://127.0.0.1:8000/subirImagen/"+str(os.path.basename(imagen)),files=archivos)
+						if respuesta.status_code!=200:
+							alerta("Error al subir \nla imagen")
+				alerta("Se cargaron\ncorrectamente\nlas imagenes")
+			except Exception as e:
+				print(e)
+
+	def excel(self):
+		doc=filedialog.askopenfilename(
+			title="Selecciona el Excel",
+			filetypes=[("Archivos de Excel", "*.xlsx *.xls *.csv")])
+
+		if doc:
+			try:
+				subirExcel(doc)
+				alerta("Se cargo\ncorrectamente\nel excel")
+			except Exception as e:
+				print(e)
+				alerta("Error en con\nel Excel")
 
 class Inicio(ctk.CTkToplevel):
 	def __init__(self):
