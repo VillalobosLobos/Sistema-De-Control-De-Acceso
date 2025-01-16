@@ -1,7 +1,6 @@
+from .imagenes import agregarImagen as img
 import customtkinter as ctk
 from PIL import Image
-from .imagenes import agregarImagen as img
-import configuraciones as c
 
 def etiquetaImagen(self,ruta,posx,posy,x,y):
 		etiqueta=ctk.CTkLabel(

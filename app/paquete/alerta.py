@@ -1,5 +1,6 @@
+from .imagenes import agregarImagen as img
+from paquete import configuraciones as c
 import customtkinter as ctk
-import configuraciones as c
 
 def alerta(txt):
 	root=ctk.CTkToplevel()	

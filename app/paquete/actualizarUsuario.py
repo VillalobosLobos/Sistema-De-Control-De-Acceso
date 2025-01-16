@@ -1,20 +1,19 @@
-import customtkinter as ctk
-import configuraciones as c
 from .etiqueta import agregarEtiqueta as etiqueta
-from .imagenes import agregarImagen as img
 from .botonImagen import botonImagen as btimg
+from .imagenes import agregarImagen as img
+from paquete import configuraciones as c
 from .campo import agregarCampo as campo
 from .boton import agregarBoton as boton
-from .foto import foto
-import configuraciones as c
+from paquete.campoC import campoC
+from .registrar import registrar
+import customtkinter as ctk
 from .buscar import buscar
 from .alerta import alerta
-from .registrar import registrar
-import requests
-from PIL import Image
+from .foto import foto
 from io import BytesIO
+from PIL import Image
+import requests
 import json
-from paquete.campoC import campoC
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):

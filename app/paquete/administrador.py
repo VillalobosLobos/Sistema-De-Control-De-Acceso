@@ -1,19 +1,19 @@
-import customtkinter as ctk
-import configuraciones as c
 from .etiqueta import agregarEtiqueta as etiqueta
 from .botonImagen import botonImagen as btimg
-from .boton import agregarBoton as boton
-import configuraciones as c
+from .actualizarUsuario import Inicio as uu
+from .imagenes import agregarImagen as img
 from .etiquetaImagen import etiquetaImagen
-from .agregarAlumno import Inicio as ae
 from .actualizarAlumno import Inicio as ue
+from .eliminarUsuario import Inicio as eu
+from paquete import configuraciones as c
 from .eliminarAlumno import Inicio as ea
 from .agregarUsuario import Inicio as au
-from .actualizarUsuario import Inicio as uu
-from .eliminarUsuario import Inicio as eu
+from .boton import agregarBoton as boton
+from .agregarAlumno import Inicio as ae
+from datetime import datetime
+import customtkinter as ctk
 from .generarPDF import pdf
 from .alerta import alerta
-from datetime import datetime
 import requests
 import json
 

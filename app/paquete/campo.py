@@ -1,5 +1,5 @@
+from paquete import configuraciones as c
 import customtkinter as ctk
-import configuraciones as c
 
 def agregarCampo(root,txt,altura,ancho,tam,fila,columna,x,y,s):
 	campo=ctk.CTkEntry(

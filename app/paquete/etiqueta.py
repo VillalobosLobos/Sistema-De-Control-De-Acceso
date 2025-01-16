@@ -1,5 +1,5 @@
+from paquete import configuraciones as c
 import customtkinter as ctk
-import configuraciones as c
 
 def agregarEtiqueta(root,txt,color,tam,fila,columna,x,y,s):
 	etiqueta=ctk.CTkLabel(

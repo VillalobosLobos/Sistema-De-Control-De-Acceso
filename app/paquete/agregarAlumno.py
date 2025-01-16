@@ -1,21 +1,20 @@
-import customtkinter as ctk
-from tkinter import filedialog
-import configuraciones as c
+from .agregarEstudiante import agregarEstudiante
 from .etiqueta import agregarEtiqueta as etiqueta
-from .imagenes import agregarImagen as img
 from .botonImagen import botonImagen as btimg
+from .imagenes import agregarImagen as img
+from paquete import configuraciones as c
 from .campo import agregarCampo as campo
 from .boton import agregarBoton as boton
-from .foto import foto
-import configuraciones as c
+from .subirExcel import subirExcel
+from .registrar import registrar
+from tkinter import filedialog
+from PIL import Image,ImageTk
+import customtkinter as ctk
 from .buscar import buscar
 from .alerta import alerta
-from .registrar import registrar
-import requests
-from PIL import Image,ImageTk
+from .foto import foto
 from io import BytesIO
-from .agregarEstudiante import agregarEstudiante
-from .subirExcel import subirExcel
+import requests
 import os
 
 class MiFrame(ctk.CTkFrame):

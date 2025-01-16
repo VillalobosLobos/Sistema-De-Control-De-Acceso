@@ -1,19 +1,19 @@
-import customtkinter as ctk
-import configuraciones as c
-from paquete.etiqueta import agregarEtiqueta as etiqueta
-from paquete.campo import agregarCampo as campo
-from paquete.boton import agregarBoton as boton
-from paquete.ingresar import ingresar as ingreso
 from paquete.etiquetaImagen import etiquetaImagen as escudos
+from paquete.etiqueta import agregarEtiqueta as etiqueta
+from paquete.ingresar import ingresar as ingreso
+from paquete.boton import agregarBoton as boton
+from paquete.campo import agregarCampo as campo
+import paquete.configuraciones as c
 from paquete.campoC import campoC
+import customtkinter as ctk
 
 class MiFrame(ctk.CTkFrame):
 	def __init__(self,master,**kwargs):
 		super().__init__(master,**kwargs)
 
 		#Para las imagenes
-		escudos(self,"paquete/img/cet1.png",30,30,150,150)
-		escudos(self,"paquete/img/ipn.png",790,30,130,150)
+		escudos(self,c.cet1,30,30,150,150)
+		escudos(self,c.ipn,790,30,130,150)
 
 		#Para las etiquetas de texto
 		etiqueta(self,"Inicio de sesión","white",80,-1,-1,220,30,"ew")

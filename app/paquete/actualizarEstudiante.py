@@ -1,6 +1,6 @@
-import json
 from .alerta import alerta
 import requests
+import json
 
 def actualizarEstudiante(boleta,nombre,grupos,turno,especialidad):
 	datos={

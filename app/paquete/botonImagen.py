@@ -1,7 +1,7 @@
+from .imagenes import agregarImagen as img
+from paquete import configuraciones as c
 import customtkinter as ctk
 from PIL import Image
-from .imagenes import agregarImagen as img
-import configuraciones as c
 
 def botonImagen(self,ruta,fila,columna,x,y,s):
 	botonAtras=ctk.CTkButton(

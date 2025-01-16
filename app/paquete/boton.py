@@ -1,5 +1,5 @@
+from paquete import configuraciones as c
 import customtkinter as ctk
-import configuraciones as c
 
 def agregarBoton(root,txt,tam,colorFondo,colorHover,ancho,radio,comando,fila,columna,x,y,s):
 	boton=ctk.CTkButton(

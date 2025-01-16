@@ -1,8 +1,8 @@
-from flask import Flask, request,send_file
-import mysql.connector
-from flask import jsonify
-from mysql.connector import Error
 from mysql.connector.errors import IntegrityError
+from flask import Flask, request,send_file
+from mysql.connector import Error
+from flask import jsonify
+import mysql.connector
 import os
 
 coneccion=mysql.connector.connect(
@@ -15,7 +15,6 @@ coneccion=mysql.connector.connect(
 cursor=coneccion.cursor()
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -56,16 +55,8 @@ def imagen(nombre):
 	except FileNotFoundError:
 		return {"error":"Imagen no encontrada"},404
 
-@app.route('/info/<int:boleta>',methods=['GET'])
+@app.route('/info/<boleta>',methods=['GET'])
 def info(boleta):
-	'''
-	Función para obtener la información del alumno usando su boleta
-	Parametros:
-		int: boleta
-
-	Valor de regreso:
-		json: salida
-	'''
 	cursor=coneccion.cursor()
 	cursor.execute("SELECT * FROM alumnos where boleta=%s;",(boleta,))
 
@@ -86,14 +77,6 @@ def info(boleta):
 
 @app.route('/infoUsuario/<string:usuario>',methods=['GET'])
 def infoUsuario(usuario):
-	'''
-	Función para obtener la información del usuario usando su usuario
-	Parametros:
-		String : usuario
-
-	Valor de regreso:
-		json: salida
-	'''
 	cursor=coneccion.cursor()
 	cursor.execute("SELECT * FROM usuarios where usuario=%s;",(usuario,))
 
@@ -111,13 +94,6 @@ def infoUsuario(usuario):
 
 @app.route('/altaAlumno',methods=['POST'])
 def altaAlumno():
-	'''
-	Función para agregar a un alumno a la BD
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string: "Regristro exitoso"
-	'''
 	info=request.json
 	boleta=info.get('boleta')
 	nombre=info.get('nombre')
@@ -141,13 +117,6 @@ def altaAlumno():
 
 @app.route('/altaUsuario',methods=['POST'])
 def altaUsuario():
-	'''
-	Función para agregar a un usuario a la BD
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string: "Regristro exitoso"
-	'''
 	info=request.json
 	usuario=info.get('usuario')
 	contraseña=info.get('contraseña')
@@ -169,13 +138,6 @@ def altaUsuario():
 
 @app.route('/actualizarAlumno',methods=['POST'])
 def actualizarAlumno():
-	'''
-	Función para actualiar a los alumnos dentro de la BD
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string:"Actualización exitosa"
-	'''
 	info=request.json
 	boleta=info.get('boleta')
 	nombre=info.get('nombre')
@@ -194,21 +156,12 @@ def actualizarAlumno():
 
 @app.route('/actualizarUsuario',methods=['POST'])
 def actualizarUsuario():
-	'''
-	Función para actualiar a los usuarios dentro de la BD
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string:"Actualización exitosa"
-	'''
 	info=request.json
 	usuario=info.get('usuario')
 	turno=info.get('turno')
 	contraseña=info.get('contraseña')
 	rol=info.get('rol')
 
-	#print(info)
-	
 	cursor=coneccion.cursor()
 	cursor.execute("update usuarios set usuario=%s,contraseña=%s, turno=%s, rol=%s where usuario=%s",(usuario,contraseña,turno,rol,usuario))
 	coneccion.commit()
@@ -216,23 +169,16 @@ def actualizarUsuario():
 	
 	return "Actualización exitosa"
 
-@app.route('/eliminarAlumno/<int:boleta>',methods=['DELETE'])
+@app.route('/eliminarAlumno/<boleta>',methods=['DELETE'])
 def eliminarAlumno(boleta):
-	'''
-	Función para eliminar de la BD a un alumno
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string: "Se a eliminado correctamente"
-	'''
 	cursor=coneccion.cursor()
 	cursor.execute("delete from  alumnos where boleta=%s;",(boleta,))
 	coneccion.commit()
 	cursor.close()
-	ruta="fotos/"+str(boleta)+".png"
+	ruta="fotos/"+str(boleta)+".jpg"
 
 	if os.path.exists(ruta):
-		os.remove("fotos/"+str(boleta)+".png")
+		os.remove("fotos/"+str(boleta)+".jpg")
 	else:
 		return "No existe ese\nusuario"
 
@@ -240,13 +186,6 @@ def eliminarAlumno(boleta):
 
 @app.route('/eliminarUsuario/<string:usuario>',methods=['DELETE'])
 def eliminarUsuario(usuario):
-	'''
-	Función para eliminar de la BD a un usuario
-	Parametros:
-		Ninguno
-	Valor de retorno:
-		string: "Se a eliminado correctamente"
-	'''
 	cursor=coneccion.cursor()
 	cursor.execute("delete from  usuarios where usuario=%s;",(usuario,))
 	coneccion.commit()
@@ -256,14 +195,6 @@ def eliminarUsuario(usuario):
 
 @app.route('/registrarAlumno/<boleta>/<estado>',methods=['GET'])
 def registrarAlumno(boleta,estado):
-	'''
-	Función para registrar si el alumno está dentro o afuera del plantel
-	Parametros:
-		int:boleta
-		string:estado
-	Valor de retorno:
-		string: "Estado cambiado"
-	'''
 	cursor=coneccion.cursor()
 	cursor.execute("update alumnos set estado=%s where boleta=%s;",(estado,boleta))
 	coneccion.commit()
@@ -273,13 +204,6 @@ def registrarAlumno(boleta,estado):
 
 @app.route('/login', methods=['POST'])
 def login():
-	'''
-	Función para el login del sistema
-	Parametros:
-		Ninguno
-	Valor de regreso:
-		string
-	'''
 	info=request.json
 	usuario=info.get('usuario')
 	contraseña=info.get('contraseña')

@@ -1,12 +1,11 @@
 import customtkinter as ctk
-import configuraciones as c
+from paquete import configuraciones as c
 from .etiqueta import agregarEtiqueta as etiqueta
 from .imagenes import agregarImagen as img
 from .botonImagen import botonImagen as btimg
 from .campo import agregarCampo as campo
 from .boton import agregarBoton as boton
 from .foto import foto
-import configuraciones as c
 from .buscar import buscar
 from .alerta import alerta
 from .registrar import registrar
